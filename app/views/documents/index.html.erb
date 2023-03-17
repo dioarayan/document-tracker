@@ -1,0 +1,19 @@
+<div class="container pt-5">
+    <div class="col-10">
+        <h1> Listing of all documents </h1>
+        <% @document.each do |document| %>
+            <div class="position-relative">
+                <div class="card w-50 mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= document.name %></h5>
+                        <p class="card-text"><%= document.description %></p>
+                        
+                        <%= link_to "Show", document, class:"btn btn-primary stretched-link" %>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+        <%= link_to "Create new document", new_document_path %>
+    </div>
+</div>
+
