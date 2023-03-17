@@ -1,20 +1,5 @@
-
-    <%= form_with model: @document do |form| %>
-        <div class = "mb-3">
-            <label for="name" class="form-label">Name: </label>
-            <%= form.text_field :name, class: "form-control", id: "name" %>
-            <% @document.errors.full_messages_for(:name).each do |message| %>
-                <div class="valid-feedback"><%= message %> </div>
-            <% end %>
-        </div>
-
-        <div class = "mb-3">
-            <label for="description" class="form-label">Description: </label>
-            <%= form.text_area :description, class: "form-control", id: "description" %>
-            <% @document.errors.full_messages_for(:description).each do |message| %>
-                <div class="valid-feedback"> <%= message %> </div>
-            <% end %>
-        </div>
-        <%= form.submit class: "btn btn-primary" %>
-        <%= link_to "Return", documents_path, class: "btn btn-link" %>
+    <%= bootstrap_form_with(model: @document, local: true) do |f| %>
+        <%= f.text_field :name %>
+        <%= f.text_area :description %>
+        <%= f.primary %>
     <% end %>
