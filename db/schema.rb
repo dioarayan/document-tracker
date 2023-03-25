@@ -10,13 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_20_030144) do
-  create_table "documents", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema[7.0].define(version: 2023_03_20_033346) do
+# Could not dump table "documents" because of following StandardError
+#   Unknown type 'init' for column 'user_id'
 
   create_table "users", force: :cascade do |t|
     t.string "username"

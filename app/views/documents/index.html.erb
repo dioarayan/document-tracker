@@ -2,8 +2,9 @@
     <div class="col-10">
         <h1> Listing of all documents </h1>
         <% @document.each do |document| %>
-            <div class="position-relative">
-                <div class="card w-50 mb-3">
+            <div class="card w-50 mb-3">
+                <p class="card-header"><em>by <%= document.user.username %></em></p>
+                    <div class="position-relative">
                     <div class="card-body">
                         <h5 class="card-title"><%= document.name %></h5>
                         <p class="card-text"><%= document.description %></p>
