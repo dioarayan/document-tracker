@@ -8,21 +8,68 @@ html {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height: 1920px;
 }
 
 nav {
   background-color: #433d3c;
 }
 
-.cover {
-  height: 640px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+.screen {
+  height: 100vh;
+}
+
+.txtPageTitle {
+  color: #83a95c;
+}
+
+label,
+.txtPageBody,
+.txtPageBody li {
+  margin-top: 6px;
+  margin-bottom: 8px;
+  color: white;
+}
+
+.listPageBody {
+  font-size: 18px;
 }
 
 .features {
-  height: 640px;
   background-color: #00425a;
+}
+
+.footer {
+  background-color: #433d3c;
+}
+
+.features,
+.footer {
+  height: 80%;
+  width: 100%;
+}
+
+.aboutLogo {
+  position: absolute;
+  top: 10%;
+  left: 5%;
+}
+
+hr {
+  height: 65vh;
+  width: 0.3vw;
+  border-width: 0;
+  background-color: #83a95c;
+}
+
+.userHeaderList,
+.userDataList {
+  padding: 6px;
+}
+
+.userHeaderList {
+  text-align: right;
+}
+.userDataList {
+  text-align: left;
 }
 

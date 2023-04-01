@@ -1,17 +1,58 @@
 <div class="container">
-    <section class="cover d-flex flex-lg-row flex-sm-column-reverse align-items-center">
-        <div class="cover-left">
-            <h1 class="display-1 fw-semibold pb-3">Document Tracker</h1>
-            <p class="h3 pb-3">Keep track of your documents without hassle! </p>
-            <button type="button" class="btn btn-success">Get Started</button>
-            <button type="button" class="btn btn-outline-success">See Dashboard</button>
-        </div>
-        <div class="cover-right">
-           <%= image_tag 'cover-right-vector.png', height: 260 %>
+    <section class="screen d-flex align-items-center">
+        <div class="cover d-flex flex-lg-row flex-sm-column-reverse align-items-center justify-content-around">
+            <div class="p-3">
+                <h1 class="display-1 fw-semibold pb-3">Document Tracker</h1>
+                <p class="h3 pb-3">Keep track of your documents without hassle! </p>
+                <button type="button" class="btn btn-success">Get Started</button>
+                <button type="button" class="btn btn-outline-success">See Dashboard</button>
+            </div>
+            <div class="p-3">
+            <%= image_tag 'cover-right-vector.png', height: 260 %>
+            </div>
         </div>
     </section>
 
-     <section class="features d-flex flex-lg-row flex-sm-column-reverse align-items-center">
-      
+     <section class="screen d-flex align-items-center">
+        <div class="features d-flex flex-lg-row flex-sm-column-reverse align-items-center justify-content-around">
+            <div class="px-5">
+                <%= image_tag 'feature-banner-image.png', height: 320 %>
+            </div>
+            <div class="px-5">
+                <h1 class="txtPageTitle py-5"> Features </h1>
+                <ul class="txtPageBody">
+                    <li><p class="listPageBody">Ready-made document template for easy and fast encoding.</p></li>
+                    <li><p class="listPageBody">Comprehensive dashboard for accurate tracking. </p></li>
+                    <li><p class="listPageBody">Real-time notifications to keep you updated for new incoming documents.</p></li>
+                    <li><p class="listPageBody">Helpful alerts to warn users for prolong pending documents.</p></li>
+                </ul>
+            </div>
+        </div>
     </section>
+
 </div>
+    <section class="screen d-flex align-items-end position-relative">
+    <%= image_tag "about-logo.png", class: "aboutLogo", height: 140 %>
+      <div class="footer d-flex flex-lg-row flex-sm-column align-items-start justify-content-center px-5">
+            <div class="px-5 w-50">
+                <h1 class="txtPageTitle py-5"> About </h1>
+                <p class="txtPageBody"> Created and designed by Dio Arayan.</br></br>
+                    This website is solely intended for the document routing process in the Department of Education, Schools Division of Baybay City to lessen the paper works, fasten the process and secure the integrity of all documents in any form.    </p>
+            </div>
+            <hr>
+            <div class="px-5 w-50">
+                <h1 class="txtPageTitle py-5"> Contact Us </h1>
+                    <form>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address: </label>
+                            <input type="email" class="form-control" id="email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message: </label>
+                            <textarea  class="form-control" id="message" rows="5"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success mb-3">Submit</button>
+                    </form>
+            </div>
+      </div>
+    </section>

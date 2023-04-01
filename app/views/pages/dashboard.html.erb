@@ -1,0 +1,19 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <h1> Listing of all documents </h1>
+            <% @documents.each do |document| %>
+                <div class="card mb-3">
+                    <p class="card-header"><em>by <%= document.user.username if document.user %></em></p>
+                        <div class="position-relative">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= document.name %></h5>
+                            <p class="card-text"><%= document.description %></p>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
+

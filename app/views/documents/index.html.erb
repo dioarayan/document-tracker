@@ -1,20 +1,25 @@
-<div class="container pt-5">
-    <div class="col-10">
-        <h1> Listing of all documents </h1>
-        <% @document.each do |document| %>
-            <div class="card w-50 mb-3">
-                <p class="card-header"><em>by <%= document.user.username if document.user %></em></p>
-                    <div class="position-relative">
-                    <div class="card-body">
-                        <h5 class="card-title"><%= document.name %></h5>
-                        <p class="card-text"><%= document.description %></p>
-                        
-                        <%= link_to "Show", document, class:"btn btn-primary stretched-link" %>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <h1 class="text-center mb-3"> My documents </h1>
+            <% @documents.each do |document| %>
+                <% if logged_in? && document.user == current_user %>
+                    <div class="card mb-3">
+                        <p class="card-header"><em>
+                            by <%= link_to document.user.username, user_path(document.user)  %> </em>
+                        </p>
+                            <div class="position-relative">
+                                <div class="card-body">
+                                    <h5 class="card-title"><%= document.name %></h5>
+                                    <p class="card-text"><%= document.description %></p>
+                                    
+                                    <%= link_to "Show", document, class:"btn btn-primary" %>
+                                </div>
+                            </div>
                     </div>
-                </div>
-            </div>
-        <% end %>
-        <%= link_to "Create new document", new_document_path %>
+                <% end %>
+            <% end %>     
+        </div>
     </div>
 </div>
 

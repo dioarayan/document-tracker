@@ -1,7 +1,6 @@
-<div class="container">
-    <div class="row jusftify-content">
+<div class="container mt-4">
+    <div class="row justify-content-center">
         <div class="col-6">
-
             <div class="table-responsive">
                 <table class="table align-middle caption-top">
                 <caption>List of users</caption>
@@ -20,7 +19,7 @@
                             <td><%= user.username %></td>
                             <td><%= user.email %></td>
                             <td><%= link_to 'Edit', edit_user_path(user.id), class: "btn btn-primary" %></td>
-                            <td><%= link_to 'Delete', users_path, class: "btn btn-danger" %></td>
+                            <td><%= link_to 'Delete', users_path, class: "btn btn-danger", data: {turbo_method: :delete}  %></td>
                         </tr>
                         <% end %>
                     </tbody>

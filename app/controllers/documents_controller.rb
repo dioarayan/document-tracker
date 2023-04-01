@@ -1,7 +1,10 @@
 class DocumentsController < ApplicationController
-   
+    before_action :set_documents, only: [:show, :edit, :update, :destroy]
+    before_action :require_user
+    before_action :require_same_user, only: [:edit, :update, :destroy]
+
     def index
-        @document = Document.all
+        @documents = Document.all
     end
 
     def show
@@ -14,7 +17,7 @@ class DocumentsController < ApplicationController
 
     def create
         @document = Document.new(document_params)
-        @document.user = User.first
+        @document.user = current_user
         if @document.save
             redirect_to @document, notice: "You have successfully created a new document!"
         else
@@ -43,8 +46,18 @@ class DocumentsController < ApplicationController
 
     private
     
+    def set_documents
+        @document = Document.find(params[:id])
+    end
+
     def document_params
         params.require(:document).permit(:name, :description)
+    end
+
+    def require_same_user
+        if current_user != @document.user
+            redirect_to @document, alert: "You can only edit or delete your own article"
+        end   
     end
 
 end
