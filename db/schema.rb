@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_25_194243) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_02_145314) do
 # Could not dump table "documents" because of following StandardError
 #   Unknown type 'init' for column 'user_id'
 
@@ -20,6 +20,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_25_194243) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
+    t.boolean "admin", default: false
   end
 
 end

@@ -7,9 +7,11 @@
                     <div class="card-body">
                         <h5 class="card-title"> <%= @document.name %></h5>
                         <p class="card-text"><%= @document.description %></p>
-                        <%= link_to "Edit", edit_document_path(@document) , class: "btn btn-primary"%>
-                        <%= link_to "Delete", document_path(@document),
-                            data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger" %> 
+                        <% if logged_in? && @document.user == current_user || current_user.admin? %>
+                            <%= link_to "Edit", edit_document_path(@document) , class: "btn btn-primary"%>
+                            <%= link_to "Delete", document_path(@document),
+                                data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger" %> 
+                        <% end %>
                     </div>
             </div>
 

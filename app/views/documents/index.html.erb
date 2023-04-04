@@ -3,7 +3,7 @@
         <div class="col-6">
             <h1 class="text-center mb-3"> My documents </h1>
             <% @documents.each do |document| %>
-                <% if logged_in? && document.user == current_user %>
+                <% if logged_in? && (document.user == current_user || current_user.admin?) %>
                     <div class="card mb-3">
                         <p class="card-header"><em>
                             by <%= link_to document.user.username, user_path(document.user)  %> </em>

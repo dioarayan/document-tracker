@@ -30,7 +30,7 @@
         <div class="row justify-content-center mt-4">
             <div class="col-6 d-flex justify-content-evenly">
                 <%= link_to "Edit", edit_user_path(@user.id), class: "btn btn-primary w-25" %>
-                <%= link_to "Delete your profile", user_path(current_user), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+                <%= link_to "Delete your profile", user_path(@user.id), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
             </div>
         </div>
     </div>

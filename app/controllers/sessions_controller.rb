@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
         user = User.find_by(email: params[:session][:email].downcase)
         if user && user.authenticate(params[:session][:password])
             session[:current_user_id] = user.id
-            redirect_to user_path, notice: "Logged in successfully"
+            redirect_to user_path(user.id), notice: "Logged in successfully"
         else
             flash.now[:alert] = "There was something wrong with your login details"
             render :new, status: :unprocessable_entity
