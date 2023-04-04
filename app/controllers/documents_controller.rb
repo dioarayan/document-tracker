@@ -55,7 +55,7 @@ class DocumentsController < ApplicationController
     end
 
     def require_same_user
-        if current_user != @document.user
+        if current_user != @document.user && !current_user.admin?
             redirect_to @document, alert: "You can only edit or delete your own article"
         end   
     end
