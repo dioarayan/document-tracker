@@ -37,7 +37,6 @@ class UsersController < ApplicationController
     end
 
     def destroy
-        debugger
         @user.destroy
         session[:current_user_id] = nil if @user == current_user 
         flash[:notice] = "Account and all associated articles successfully deleted"
