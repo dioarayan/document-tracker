@@ -1,24 +1,68 @@
 <div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-6">
-            <h1 class="text-center mb-3"> My documents </h1>
-            <% @documents.each do |document| %>
-                <% if logged_in? && (document.user == current_user || current_user.admin?) %>
-                    <div class="card mb-3">
-                        <p class="card-header"><em>
-                            by <%= link_to document.user.username, user_path(document.user)  %> </em>
-                        </p>
-                            <div class="position-relative">
-                                <div class="card-body">
-                                    <h5 class="card-title"><%= document.name %></h5>
-                                    <p class="card-text"><%= document.description %></p>
-                                    
-                                    <%= link_to "Show", document, class:"btn btn-primary" %>
+    <div class="row">
+        <div class="col-md-3">
+            <h3>Pending</h3>
+            <div class="trackContainer">
+                <div class="list-group p-1">
+                    <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Sample processing doc</h5>
+                            <small class="text-body-secondary">3 days ago</small>
+                        </div>
+                        <h6> <span class="badge bg-success"> Activity Proposal </span></h6>
+                        <small class="text-body-secondary">And some muted small print.</small>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <h3> Just received: </h3>
+            <div class="trackContainer">
+                <% @documents.each do |document| %>
+                    <% if logged_in? && (document.user == current_user || current_user.admin?) %>
+                        <div class="list-group p-1">
+                            <a href="/documents/<%=document.id %>" class="list-group-item list-group-item-action" aria-current="true">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1"><%= document.name %></h5>
+                                    <small> <%= time_ago_in_words(document.created_at) %> ago</small>
                                 </div>
-                            </div>
-                    </div>
+                                <h6> <span class="badge bg-success"><%= document.doctype.name %></span></h6>
+                                <small><%= document.description %></small>
+                            </a>
+                        </div>
+                    <% end %>
                 <% end %>
-            <% end %>     
+            </div>    
+        </div>
+            <div class="col-md-3">
+            <h3>Processing</h3>
+            <div class="trackContainer">
+                <div class="list-group p-1">
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Sample processing doc</h5>
+                            <small class="text-body-secondary">3 days ago</small>
+                        </div>
+                        <h6> <span class="badge bg-success"> Activity Proposal </span></h6>
+                        <small class="text-body-secondary">And some muted small print.</small>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <h3>Completed</h3>
+            <div class="trackContainer">
+                <div class="list-group p-1">
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Sample processing doc</h5>
+                            <small class="text-body-secondary">3 days ago</small>
+                        </div>
+                        <h6> <span class="badge bg-success"> Activity Proposal </span></h6>
+                        <small class="text-body-secondary">And some muted small print.</small>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

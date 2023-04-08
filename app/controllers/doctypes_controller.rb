@@ -1,11 +1,13 @@
 class DoctypesController < ApplicationController
+    before_action :set_doctype, only: [:show, :edit, :update, :destroy]
+    before_action :require_admin, except: [:index, :show]
 
     def index
         @doctypes = Doctype.all
     end
 
     def show
-        @doctype = Doctype.find(params[:id]) 
+        @documents = @doctype.documents
     end
 
     def new
@@ -22,11 +24,10 @@ class DoctypesController < ApplicationController
     end
 
     def edit
-        @doctype = Doctype.find(params[:id])
+        
     end
 
     def update
-        @doctype = Doctype.find(params[:id])
         if @doctype.update(params.require(:doctype).permit(:name))
             redirect_to @doctype, notice: "You have successfully edit a doc type!"
         else
@@ -35,9 +36,14 @@ class DoctypesController < ApplicationController
     end
 
     def destroy
-        @doctype = Doctype.find(params[:id])
         @doctype.destroy
         redirect_to doctypes_path, status: :see_other, notice: "You have successfully deleted a doc type!"
+    end
+
+    private
+
+    def set_doctype
+        @doctype = Doctype.find(params[:id])
     end
 
 

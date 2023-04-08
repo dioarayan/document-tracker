@@ -51,7 +51,7 @@ class DocumentsController < ApplicationController
     end
 
     def document_params
-        params.require(:document).permit(:name, :description)
+        params.require(:document).permit(:name, :description, :doctype_id)
     end
 
     def require_same_user

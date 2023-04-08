@@ -2,8 +2,9 @@
     <h1>Document Types</h1>
 
     <div class="row row-cols-2 row-cols-md-3 g-4 mt-3">
+    <% if current_user.admin? %>
     <div class="col">
-            <div class="card text-bg-primary position-relative">
+            <div class="card text-bg-light position-relative">
             <div class="card-body">
                 <h5 class="card-title">
                     <span class="px-2"><%= image_tag "plus.png", height: 24 %></span>
@@ -12,12 +13,15 @@
             </div>
             </div>
         </div>
+    <% end %>
     <% @doctypes.each do | doctype | %>
         <div class="col">
-            <a href="/doctypes/<%= doctype.id %>">
-                <div class="card text-bg-success">
+            <a href="/doctypes/<%= doctype.id %>" class="text-decoration-none">
+                <div class="card text-bg-primary">
                 <div class="card-body">
-                    <h5 class="card-title text-decoration-none"><%=doctype.name %></h5>
+                    <h5 class="card-title position-relative"><%=doctype.name %>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"><%= pluralize(doctype.documents.count, '')  %></span>
+                    </h5>
                 </div>
                 </div>
             </a>

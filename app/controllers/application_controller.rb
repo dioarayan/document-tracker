@@ -15,5 +15,11 @@ class ApplicationController < ActionController::Base
             redirect_to login_path, alert: "You must be logged in to perform that action"
         end
     end
+
+    def require_admin
+        if !current_user.admin?
+            redirect_to login_path, alert: "You must have administrative-level privilage in performing such actions"
+        end
+    end
     
 end

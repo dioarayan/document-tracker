@@ -1,6 +1,7 @@
-    <%= bootstrap_form_with(model: @document, local: true) do |f| %>
+    <%= bootstrap_form_for(@document) do |f| %>
         <%= f.text_field :name %>
         <%= f.text_area :description %>
+        <%= f.select :doctype_id, Doctype.all.collect{ |p| [ p.name, p.id ]}, { prompt: "Choose document type" } %>
         <%= f.primary %>
-        <%= link_to "Return", @document %>
+        <%= link_to "Return", :back %>
     <% end %>

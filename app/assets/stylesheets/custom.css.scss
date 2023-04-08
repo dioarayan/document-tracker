@@ -3,11 +3,11 @@
 body,
 html {
   margin: 0;
-  background: url(../images/bg.jpg) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  height: 100%;
+}
+
+html {
+  background-color: grey;
 }
 
 nav {
@@ -70,5 +70,11 @@ hr {
 }
 .userDataList {
   text-align: left;
+}
+
+.trackContainer {
+  height: 75vh;
+  overflow: auto;
+  background-color: #cdcdcd;
 }
 

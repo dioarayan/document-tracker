@@ -1,7 +1,31 @@
 <div class="container mt-3">
     <h1>Showing <%= @doctype.name %></h1>
-    <%= link_to "Edit", edit_doctype_path(@doctype), class: "btn btn-primary" %>
-    <%= link_to "Delete", doctype_path(@doctype), 
-        data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-danger" %>
-    <%= link_to "Return", doctypes_path %>
+    <% if logged_in? && current_user.admin? %>
+        <%= link_to "Edit", edit_doctype_path(@doctype), class: "btn btn-primary" %>
+        <%= link_to "Delete", doctype_path(@doctype), 
+            data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-danger" %>
+        <%= link_to "Return", doctypes_path %>
+    <% end %>
+
+    <% @documents.each do |document| %>
+    <div class="row justify-content-center mt-4">
+        <div class="col-6">
+            <div class="card">
+                <small class="card-header"><i>Pending</i></small>
+                    <div class="card-body">
+                        <h5 class="card-title"> <%= document.name %>
+                         <span class="badge bg-secondary"><%= document.doctype.name %></span></h5>
+                        <p class="card-text"><%= document.description %></p>
+                        <% if logged_in? && document.user == current_user || current_user.admin? %>
+                            <%= link_to "Edit", edit_document_path(document) , class: "btn btn-primary"%>
+                            <%= link_to "Delete", document_path(document),
+                                data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger" %> 
+                        <% end %>
+                    </div>
+            </div>
+        </div>
+    </div>   
+    <% end %>
+
+    
 </div>    
