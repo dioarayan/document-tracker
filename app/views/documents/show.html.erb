@@ -5,7 +5,9 @@
             <div class="card">
                 <small class="card-header"><i>Pending</i></small>
                     <div class="card-body">
-                        <h5 class="card-title"> <%= @document.name %></h5>
+                        <h5 class="card-title"> <%= @document.name %>
+                            <span class="badge bg-success"> Activity Proposal </span>
+                        </h5>
                         <p class="card-text"><%= @document.description %></p>
                         <% if logged_in? && @document.user == current_user || current_user.admin? %>
                             <%= link_to "Edit", edit_document_path(@document) , class: "btn btn-primary"%>
