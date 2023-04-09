@@ -2,6 +2,7 @@
         <%= f.select :doctype_id, Doctype.all.collect{ |p| [ p.name, p.id ]}, { prompt: "Choose document type" } %>
         <%= f.text_field :name %>
         <%= f.text_area :description %>
+        <%= f.select :doc_route_info.status.id, [["received", "1"], ["pending", "2"], ["processing", "3"], ["completed", "4"]], { label: "Status", prompt: "Choose action to be taken: ", wrapper: { class: 'has-warning', data: { foo: 'bar' } } }, { class: "selectpicker mb-3" } %>
         <%= f.primary %>
         <%= link_to "Return", :back %>
     <% end %>
