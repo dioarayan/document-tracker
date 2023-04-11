@@ -1,0 +1,14 @@
+
+<div class="container mt-3">
+<h6>Document Log: </h6>
+    <ul class="list-group list-group-flush">    
+        <% @records.each do | record | %>
+            <li class="list-group-item">
+                <div class="d-flex w-100 justify-content-between">
+                    <p class="mb-1"><i><%= record.status.statusName %></i> by <b><%= record.user.username %></b></p>
+                    <small><%= time_ago_in_words(record.created_at) %> ago</small>
+                </div>
+            </li>
+        <% end %>
+    </ul>
+</div>
