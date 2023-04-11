@@ -10,15 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_08_211839) do
-  create_table "doc_route_infos", force: :cascade do |t|
-    t.integer "document_id"
-    t.integer "status_id"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
+ActiveRecord::Schema[7.0].define(version: 2023_04_11_042855) do
   create_table "doctypes", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false

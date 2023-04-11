@@ -5,7 +5,7 @@
             <div class="trackContainer">
                 <% @documents.each do |document| %>
                 <div class="list-group p-1">
-                    <a href="/documents/<%=document.id %>" class="list-group-item list-group-item-action" aria-current="true">
+                    <a href="/document/<%=document.id %>" class="list-group-item list-group-item-action" aria-current="true">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1"><%= document.name %></h5>
                             <small> <%= time_ago_in_words(document.created_at) %> ago</small>

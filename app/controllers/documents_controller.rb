@@ -9,16 +9,13 @@ class DocumentsController < ApplicationController
 
     def show
         @document = Document.find(params[:id])
-        @route = @document.doc_route_infos
     end
 
     def new
         @document = Document.new
-        @route = @document.doc_route_infos
     end
 
     def create
-        debugger
         @document = Document.new(document_params)
         @document.user = current_user
         if @document.save

@@ -2,6 +2,7 @@ class RecordsController < ApplicationController
 
     def index
         @records = Record.all
+        @record = 
     end
 
     def show
