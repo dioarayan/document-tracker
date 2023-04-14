@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  app: 
+    image: daviuz/ruby:3.1.3
+    user: root
+    volumes:
+      - .:/app
+      - gem_cache:/usr/local/bundle/gems
+    working_dir: /app
+    environment:
+      RAILS_ENV: development
+    command: bundle exec rails server -b 0.0.0.0 -p 3000
+    shm_size: 1gb
+    ports: 
+      - "3000:3000"
+
+volumes:
+  gem_cache:
