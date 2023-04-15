@@ -6,11 +6,9 @@
                 <small class="card-header"><i>Pending</i></small>
                     <div class="card-body">
                         <h5 class="card-title"> <%= @document.name %>
-                            <span class="badge bg-success"> Activity Proposal </span>
+                            <span class="badge bg-success"> <%= @document.doctype.name %> </span>
                         </h5>
                         <p class="card-text"><%= @document.description %></p>
-
-                        <%= render 'docRouteInfos/new' %>
 
                         <% if logged_in? && @document.user == current_user || current_user.admin? %>
                             <%= link_to "Edit", edit_document_path(@document) , class: "btn btn-primary"%>
@@ -20,7 +18,7 @@
                     </div>
             </div>
 
-            <%= render 'records/show' %>
+           
 
             <p><%= link_to "Return", :back %></p>
         </div>
