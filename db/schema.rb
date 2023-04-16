@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_15_134529) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_15_212119) do
   create_table "doctypes", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -24,11 +24,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_15_134529) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "doctype_id"
+    t.index ["doctype_id"], name: "index_documents_on_doctype_id"
+    t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
   create_table "routes", force: :cascade do |t|
     t.integer "document_id"
-    t.integer "status_id"
+    t.integer "status_id", default: 1
     t.integer "user_id"
     t.string "remarks"
     t.datetime "created_at", null: false

@@ -1,7 +1,7 @@
 class DocRouteInfoController < ApplicationController
 
     def show
-        @route = DocRouteInfo.find(params[:id])
+        @route = Route.find(params[:id])
     end
 
 end
