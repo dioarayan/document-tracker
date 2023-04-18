@@ -10,8 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_15_212119) do
-  create_table "doctypes", force: :cascade do |t|
+ActiveRecord::Schema[7.0].define(version: 2023_04_18_074830) do
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "divisions", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -23,8 +29,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_15_212119) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.integer "doctype_id"
-    t.index ["doctype_id"], name: "index_documents_on_doctype_id"
+    t.integer "category_id"
+    t.index ["category_id"], name: "index_documents_on_category_id"
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
@@ -38,6 +44,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_15_212119) do
     t.index ["document_id"], name: "index_routes_on_document_id"
     t.index ["status_id"], name: "index_routes_on_status_id"
     t.index ["user_id"], name: "index_routes_on_user_id"
+  end
+
+  create_table "sections", force: :cascade do |t|
+    t.integer "division_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["division_id"], name: "index_sections_on_division_id"
   end
 
   create_table "statuses", force: :cascade do |t|
