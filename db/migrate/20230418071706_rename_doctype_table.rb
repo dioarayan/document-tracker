@@ -1,0 +1,5 @@
+class RenameDoctypeTable < ActiveRecord::Migration[7.0]
+  def change
+    rename_table('doctypes', 'categories')
+  end
+end

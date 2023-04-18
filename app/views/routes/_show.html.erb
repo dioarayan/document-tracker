@@ -2,7 +2,7 @@
 <div class="mt-3">
 <h6>Document Log: </h6>
     <ul class="list-group list-group-flush">    
-        <%= @record.each do | r | %>
+        <%= @route.each do | r | %>
             <li class="list-group-item">
                 <div class="d-flex w-100 justify-content-between">
                     <p class="mb-1"><i><%= r.status.statusName %></i> by <b><%= r.user.username %></b></p>

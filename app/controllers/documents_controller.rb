@@ -9,6 +9,7 @@ class DocumentsController < ApplicationController
 
     def show
         @document = Document.find(params[:id])
+        @route = @document.routes
     end
 
     def new
