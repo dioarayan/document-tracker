@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_18_074830) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_20_025700) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -37,13 +37,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_18_074830) do
   create_table "routes", force: :cascade do |t|
     t.integer "document_id"
     t.integer "status_id", default: 1
-    t.integer "user_id"
     t.string "remarks"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "receiving_user_id"
     t.index ["document_id"], name: "index_routes_on_document_id"
+    t.index ["receiving_user_id"], name: "index_routes_on_receiving_user_id"
     t.index ["status_id"], name: "index_routes_on_status_id"
-    t.index ["user_id"], name: "index_routes_on_user_id"
   end
 
   create_table "sections", force: :cascade do |t|
@@ -67,6 +67,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_18_074830) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.boolean "admin", default: false
+    t.integer "sections_id"
   end
 
+  add_foreign_key "routes", "users", column: "receiving_user_id"
 end

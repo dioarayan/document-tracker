@@ -2,6 +2,9 @@
         <%= f.text_field :username %>
         <%= f.email_field :email %>
         <%= f.password_field :password %>
+            <%= bootstrap_form_for :sections do |s| %>
+            <%= s.select :sections_id, Section.all.collect { |sect|[sect.name, sect.id] }, {include_blank: true} %>
         <%= f.primary %>     
         <%= link_to "Return", users_path %>
+    <% end %>
     <% end %>

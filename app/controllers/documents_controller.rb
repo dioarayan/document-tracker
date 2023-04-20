@@ -52,7 +52,7 @@ class DocumentsController < ApplicationController
     end
 
     def document_params
-        params.require(:document).permit(:name, :description, :category_id)
+        params.require(:document).permit(:name, :description, :category_id, routes_attributes: [:receiving_user_id])
     end
 
     def require_same_user

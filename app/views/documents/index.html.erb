@@ -1,7 +1,7 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-3">
-            <h3>Pending</h3>
+            <h3>To be received</h3>
             <div class="trackContainer">
                 <div class="list-group p-1">
                     <a href="#" class="list-group-item list-group-item-action" aria-current="true">
@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="col-md-3">
-            <h3> Just received: </h3>
+            <h3> For processing: </h3>
             <div class="trackContainer">
                 <% @documents.each do |document| %>
                     <% if logged_in? && (document.user == current_user || current_user.admin?) %>
@@ -26,7 +26,7 @@
                                     <h5 class="mb-1"><%= document.name %></h5>
                                     <small> <%= time_ago_in_words(document.created_at) %> ago</small>
                                 </div>
-                                <h6> <span class="badge bg-success"><%= document.doctype.name %></span></h6>
+                                <h6> <span class="badge bg-success"><%= document.category.name %></span></h6>
                                 <small><%= document.description %></small>
                             </a>
                         </div>
@@ -35,7 +35,7 @@
             </div>    
         </div>
             <div class="col-md-3">
-            <h3>Processing</h3>
+            <h3>To be released</h3>
             <div class="trackContainer">
                 <div class="list-group p-1">
                     <a href="#" class="list-group-item list-group-item-action">

@@ -4,4 +4,8 @@ class DocRouteInfoController < ApplicationController
         @route = Route.find(params[:id])
     end
 
+    def new
+        @route = Route.new()
+    end
+
 end

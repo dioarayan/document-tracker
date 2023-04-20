@@ -13,6 +13,7 @@ class UsersController < ApplicationController
 
     def new
         @user = User.new
+        @user.sections_id
     end
 
     def create 

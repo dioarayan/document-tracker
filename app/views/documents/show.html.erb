@@ -26,7 +26,7 @@
                     <%= @route.each do | r | %>
                         <li class="list-group-item">
                             <div class="d-flex w-100 justify-content-between">
-                                <p class="mb-1"><i><%= r.status.statusName %></i> by <b><%= r.user.username %></b></p>
+                                <p class="mb-1"><i><%= r.status.statusName %></i> by <b><%= r.receiving_user.username %></b></p>
                                 <small><%= time_ago_in_words(r.created_at) %> ago</small>
                             </div>
                         </li>
