@@ -18,7 +18,7 @@
           </a>
           <ul class="dropdown-menu">
             <li>
-              <%= link_to "View Documents", documents_path, class: "dropdown-item" %>
+              <%= link_to "View Documents", routes_path, class: "dropdown-item" %>
             </li>
             <li>
               <%= link_to "Create Document", new_document_path, class: "dropdown-item" %>
@@ -29,7 +29,7 @@
             <%= link_to "Users", users_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Doc Types", doctypes_path, class: "nav-link" %>
+            <%= link_to "Doc Types", categories_path, class: "nav-link" %>
           </li>
         <% end %>
         <li class="nav-item">

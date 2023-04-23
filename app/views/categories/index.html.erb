@@ -1,5 +1,5 @@
 <div class="container mt-3">
-    <h1>Document Types</h1>
+    <h1>Document Categories</h1>
 
     <div class="row row-cols-2 row-cols-md-3 g-4 mt-3">
     <% if current_user.admin? %>
@@ -8,19 +8,19 @@
             <div class="card-body">
                 <h5 class="card-title">
                     <span class="px-2"><%= image_tag "plus.png", height: 24 %></span>
-                    <%= link_to "Add New Doc Type", new_doctype_path, class: 'link-dark text-decoration-none stretched-link' %>
+                    <%= link_to "Add New Doc Type", new_category_path, class: 'link-dark text-decoration-none stretched-link' %>
                 </h5>
             </div>
             </div>
         </div>
     <% end %>
-    <% @doctypes.each do | doctype | %>
+    <% @categories.each do | category | %>
         <div class="col">
-            <a href="/doctypes/<%= doctype.id %>" class="text-decoration-none">
+            <a href="/categories/<%= category.id %>" class="text-decoration-none">
                 <div class="card text-bg-primary">
                 <div class="card-body">
-                    <h5 class="card-title position-relative"><%=doctype.name %>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"><%= pluralize(doctype.documents.count, '')  %></span>
+                    <h5 class="card-title position-relative"><%=category.name %>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"><%= pluralize(category.documents.count, '')  %></span>
                     </h5>
                 </div>
                 </div>

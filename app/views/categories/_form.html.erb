@@ -1,0 +1,5 @@
+   <%= bootstrap_form_with(model: @category, local: true) do |f| %>
+        <%= f.text_field :name %>
+        <%= f.primary %>
+        <%= link_to "Return", @category %>
+    <% end %>

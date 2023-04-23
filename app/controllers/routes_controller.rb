@@ -1,11 +1,8 @@
-class DocRouteInfoController < ApplicationController
+class RoutesController < ApplicationController
+    before_action :require_user
 
-    def show
-        @route = Route.find(params[:id])
-    end
-
-    def new
-        @route = Route.new()
+    def index
+        @routes = Route.all
     end
 
 end

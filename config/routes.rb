@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :users, except: [:new]
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
-  resources :doctypes
+  resources :categories
   resources :routes
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

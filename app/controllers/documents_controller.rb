@@ -18,7 +18,7 @@ class DocumentsController < ApplicationController
 
     def create
         @document = Document.new(document_params)
-        @document.user = current_user
+        @document.user = current_user   
         if @document.save
             redirect_to @document, notice: "You have successfully created a new document!"
         else
