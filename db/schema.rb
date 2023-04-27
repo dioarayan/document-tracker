@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_27_055018) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_27_074211) do
   create_table "actions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -36,7 +36,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_27_055018) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "category_id"
+    t.integer "status_id", default: 1
     t.index ["category_id"], name: "index_documents_on_category_id"
+    t.index ["status_id"], name: "index_documents_on_status_id"
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
@@ -74,5 +76,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_27_055018) do
     t.integer "sections_id"
   end
 
+  add_foreign_key "documents", "statuses"
   add_foreign_key "routes", "users", column: "receiving_user_id"
 end
