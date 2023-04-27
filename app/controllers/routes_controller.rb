@@ -13,12 +13,11 @@ class RoutesController < ApplicationController
     
     def new
         @route = Route.new
+        @document = Document.find(params[:document_id])
     end
     
     def create
         @route = Route.new(route_params) 
-        @document = Document.find(params[:document_id])
-        @route.document_id = @document.id
         debugger
         if @route.save
             redirect_to @route, notice: "You have successfully routed a document!"
@@ -43,7 +42,7 @@ class RoutesController < ApplicationController
     private
 
     def route_params
-        params.require(:route).permit(:receiving_user_id, :action_id, :remarks)
+        params.require(:route).permit(:document_id, :receiving_user_id, :action_id, :remarks)
     end
 
 end

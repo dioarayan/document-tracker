@@ -3,6 +3,7 @@
     <h3 class="text-center py-5">New route document</h3>
 
     <%= bootstrap_form_for([@document, @route]) do |f| %>
+            <%= f.hidden_field :document_id, value: @document.id %>
             <%= f.select :receiving_user_id, User.all.collect{ |u| [u.username, u.id]}, {prompt: "Forward to"} %>
             <%= f.select :action_id, Action.all.collect{ |a| [a.actionName, a.id]}, {prompt: "Choose action to be taken"} %>
             <%= f.text_area :remarks %>

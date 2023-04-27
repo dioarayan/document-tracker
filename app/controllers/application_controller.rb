@@ -1,9 +1,13 @@
 class ApplicationController < ActionController::Base
 
-    helper_method :current_user, :logged_in?
+    helper_method :current_user, :logged_in?, :document_route
 
     def current_user
         @_current_user ||= User.find(session[:current_user_id]) if session[:current_user_id]
+    end
+
+    def document_route
+        @_document_route ||= Document.find(params[:document_id]) if params[:document_id]
     end
 
     def logged_in?
