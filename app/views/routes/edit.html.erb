@@ -1,0 +1,21 @@
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <h1 class="text-center mb-3"> Route document </h1>
+
+                <%= bootstrap_form_for(@route) do |f| %>
+                    <%= f.fields_for :document do |r| %>
+                        <%= r.select :category_id, Category.all.collect{ |p| [ p.name, p.id ]}, { prompt: "Choose document category"}, disabled: true  %>
+                        <%= r.text_field :name, disabled: true %>
+                        <%= r.text_area :description, disabled: true %>
+                        <% if @route.action_id != 1 %>
+                            <%= f.select :receiving_user_id, User.all.collect{ |u| [u.username, u.id]}, {prompt: "Choose receiving user"} %>
+                        <% end %>
+                    <%= f.primary %>
+                    <% end %>
+                <% end %>
+                    <%= link_to "Return", :back %>
+                    
+        </div>
+    </div>
+</div>

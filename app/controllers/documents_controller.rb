@@ -1,7 +1,7 @@
 class DocumentsController < ApplicationController
     before_action :set_documents, only: [:show, :edit, :update, :destroy]
     before_action :require_user
-    before_action :require_same_user, only: [:edit, :update, :destroy]
+    before_action :require_same_user, only: [:destroy]
 
     def index
         @documents = Document.all
@@ -9,7 +9,8 @@ class DocumentsController < ApplicationController
 
     def show
         @document = Document.find(params[:id])
-        @route = @document.routes
+        @routes = @document.routes
+        @route = Route.new
     end
 
     def new
@@ -52,7 +53,7 @@ class DocumentsController < ApplicationController
     end
 
     def document_params
-        params.require(:document).permit(:name, :description, :category_id, routes_attributes: [:receiving_user_id])
+        params.require(:document).permit(:name, :description, :category_id, routes_attributes: [:receiving_user_id, :action_id])
     end
 
     def require_same_user

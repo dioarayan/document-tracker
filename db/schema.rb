@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_20_025700) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_25_071550) do
+  create_table "actions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "actionName"
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -36,14 +42,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_20_025700) do
 
   create_table "routes", force: :cascade do |t|
     t.integer "document_id"
-    t.integer "status_id", default: 1
     t.string "remarks"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "receiving_user_id"
+    t.integer "action_id", default: 1
     t.index ["document_id"], name: "index_routes_on_document_id"
     t.index ["receiving_user_id"], name: "index_routes_on_receiving_user_id"
-    t.index ["status_id"], name: "index_routes_on_status_id"
   end
 
   create_table "sections", force: :cascade do |t|
@@ -70,5 +75,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_20_025700) do
     t.integer "sections_id"
   end
 
+  add_foreign_key "routes", "actions"
   add_foreign_key "routes", "users", column: "receiving_user_id"
 end

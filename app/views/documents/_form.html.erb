@@ -4,7 +4,8 @@
         <%= f.text_area :description %>
         <%= f.fields_for(:routes, Route.new) do |r| %>
             <%= r.select :receiving_user_id, User.all.collect{ |u| [u.username, u.id]}, {prompt: "Choose receiving user"} %>
-        <% end %>
+            <%= r.select :action_id, Action.all.collect{ |a| [a.actionName, a.id]}, {prompt: "Choose action"} %>
         <%= f.primary %>
+        <% end %>
     <% end %>
         <%= link_to "Return", :back %>
