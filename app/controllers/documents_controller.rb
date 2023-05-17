@@ -20,10 +20,18 @@ class DocumentsController < ApplicationController
     def create
         @document = Document.new(document_params)
         @document.user = current_user   
-        if @document.save
-            redirect_to @document, notice: "You have successfully created a new document!"
-        else
-            render :new, status: :unprocessable_entity
+        respond_to do |format|
+            if @document.save
+                format.turbo_stream { render turbo_stream: turbo_stream.append(
+                'document_list', partial: 'documents/document', locals: {document: @document})}
+                format.html { redirect_to document_url(@document), notice: "Document was successfully created." }
+                format.json { render :show, status: :created, location: @document }
+            else
+                format.turbo_stream { render turbo_stream: turbo_stream.replace(
+                'remote_modal', partial: 'documents/form_modal', locals: {document: @document})}
+                format.html { render :new, status: :unprocessable_entity }
+                format.json { render json: @document.errors, status: :unprocessable_entity }
+            end
         end
     end
 

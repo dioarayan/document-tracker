@@ -1,4 +1,5 @@
-    <%= bootstrap_form_for(@document) do |f| %>
+<%= bootstrap_form_for(document) do |f| %>
+    <div class="modal-body">
         <%= f.select :category_id, Category.all.collect{ |p| [ p.name, p.id ]}, { prompt: "Choose document category" } %>
         <%= f.text_field :name %>
         <%= f.text_area :description %>
@@ -7,6 +8,9 @@
                 <%= r.select :receiving_user_id, User.all.collect{ |u| [u.username, u.id]}, {prompt: "Choose receiving user"} %>
         <% end %>
         <% end %>
-        <%= f.primary %>
-    <% end %>
-        <%= link_to "Return", :back %>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <%= f.submit class: "btn btn-primary", data: {action: "click->bs-modal#submitForm"} %>
+    </div>
+<% end %>

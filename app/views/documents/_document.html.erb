@@ -1,0 +1,10 @@
+<div id="<%= dom_id document %>">
+    <%= link_to document_path(document), class: "list-group-item list-group-item-action", role: "button", data: { controller: 'document-modal '} do %>
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1"><%= document.name %></h5>
+                <small> <%= time_ago_in_words(document.created_at) %> ago</small>
+            </div>
+            <h6> <span class="badge bg-success"><%= document.category.name %></span></h6>
+            <small><i>forwarded from</i><b> <%= document.user.username %></b></small>
+    <% end %>    
+</div>

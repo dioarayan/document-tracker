@@ -1,24 +1,16 @@
-<div class="container mt-5">
+
     <div class="row justify-content-center">
         <div class="col-md-10">
             <h3> New documents </h3>
             <div class="trackContainer">
-                <% @documents.each do |document| %>
-                    <% if logged_in? && (document.routes.last.receiving_user == current_user || current_user.admin?) %>
-                        <div class="list-group p-1">
-                            <a href="/documents/<%=document.id %>" class="list-group-item list-group-item-action" aria-current="true">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1"><%= document.name %></h5>
-                                    <small> <%= time_ago_in_words(document.created_at) %> ago</small>
-                                </div>
-                                <h6> <span class="badge bg-success"><%= document.category.name %></span></h6>
-                                <small><i>forwarded from</i><b> <%= document.user.username %></b></small>
-                            </a>
-                        </div> 
+                <div class="list-group p-1" id="document_list"> 
+                    <% @documents.each do |document| %>
+                        <% if logged_in? && (document.routes.last.receiving_user == current_user || current_user.admin?) %>
+                            <%= render document %>
+                        <% end %>
                     <% end %>
-                <% end %>
+                </div>
             </div>    
         </div>
     </div>
-</div>
 
