@@ -8,7 +8,7 @@
 
 
 User.destroy_all
-users = User.create!([
+User.create!([
     {
         username: "admin",
         email: "admin@test.com",
@@ -23,9 +23,9 @@ users = User.create!([
     }
 ])
 
-Doctype.destroy_all
+Category.destroy_all
 
-doctypes = Doctype.create!([
+Category.create!([
     {
         name: "Travel Order"
     },
@@ -37,35 +37,5 @@ doctypes = Doctype.create!([
     },
 ])
 
-Document.destroy_all
-
-Document.create!([
-    {
-        name: "Dio Arayan",
-        description: "April 17 @ Ormoc City",
-        user_id: users.first,
-        doctype_id: doctypes.first
-    },
-    {
-        name: "Request conduct study",
-        description: "from John Smith, Harvard University",
-        user_id: users.last,
-        doctype_id: doctypes.last
-    },
-    {
-        name: "John Doe",
-        description: "April 13 @ Tacloban City",
-        user_id: users.first,
-        doctype_id: doctypes.first
-    },
-    {
-        name: "Capability Building Program",
-        description: "August 31 @ BCDEC",
-        user_id: users.first,
-        doctype_id: doctypes.last
-    },
-])
-
 p "Created #{User.count} Users"
-p "Created #{Doctype.count} Doctypes"
-p "Created #{Documents.count} Documents"
+p "Created #{Category.count} Category"

@@ -5,65 +5,102 @@
              <div class="trackContainer">
                 <% @routes.each do |route| %>
                     <% if logged_in? && (route.receiving_user == current_user || current_user.admin?) %>
+                    <% if route.action_id == 1 %>
                         <div class="list-group p-1">
-                            <a href="documents/<%= route.document.id %>/edit" class="list-group-item list-group-item-action" aria-current="true">
+                            <a href="routes/<%= route.id %>" class="list-group-item list-group-item-action" aria-current="true">
                                 <div class="d-flex w-100 justify-content-between">
                                     <h5 class="mb-1"><%= route.document.name %></h5>
                                     <small> <%= time_ago_in_words(route.created_at) %> ago</small>
                                 </div>
                                 <h6> <span class="badge bg-success"><%= route.document.category.name %></span></h6>
-                                <small><%= route.remarks %></small>
+                                <small>from <%= route.document.user.username %></small>
                             </a>
                         </div>
+                    <% end %>
                     <% end %>
                 <% end %>
             </div>    
         </div>
             <div class="col-md-3">
-            <h3>For processing:</h3>
+            <h3>Just received</h3>
             <div class="trackContainer">
-                <div class="list-group p-1">
-                    <a href="#" class="list-group-item list-group-item-action">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Sample processing doc</h5>
-                            <small class="text-body-secondary">3 days ago</small>
+                 <% @routes.each do |route| %>
+                    <% if logged_in? && (route.receiving_user == current_user || current_user.admin?) %>
+                    <% if route.action_id == 3 %>
+                        <div class="list-group p-1">
+                            <a href="routes/<%= route.id %>" class="list-group-item list-group-item-action" aria-current="true">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1"><%= route.document.name %></h5>
+                                    <small> <%= time_ago_in_words(route.created_at) %> ago</small>
+                                </div>
+                                <h6> <span class="badge bg-success"><%= route.document.category.name %></span></h6>
+                                <small>from <%= route.document.user.username %></small>
+                            </a>
                         </div>
-                        <h6> <span class="badge bg-success"> Activity Proposal </span></h6>
-                        <small class="text-body-secondary">And some muted small print.</small>
-                    </a>
-                </div>
+                    <% end %>
+                    <% end %>
+                <% end %>
             </div>
         </div>
         <div class="col-md-3">
             <h3> Released </h3>
             <div class="trackContainer">
-                <div class="list-group p-1">
-                    <a href="#" class="list-group-item list-group-item-action">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Sample processing doc</h5>
-                            <small class="text-body-secondary">3 days ago</small>
+                 <% @routes.each do |route| %>
+                    <% if logged_in? && (route.receiving_user == current_user || current_user.admin?) %>
+                    <% if route.action_id == 4 %>
+                        <div class="list-group p-1">
+                            <a href="routes/<%= route.id %>" class="list-group-item list-group-item-action" aria-current="true">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1"><%= route.document.name %></h5>
+                                    <small> <%= time_ago_in_words(route.created_at) %> ago</small>
+                                </div>
+                                <h6> <span class="badge bg-success"><%= route.document.category.name %></span></h6>
+                                <small>from <%= route.document.user.username %></small>
+                            </a>
                         </div>
-                        <h6> <span class="badge bg-success"> Activity Proposal </span></h6>
-                        <small class="text-body-secondary">And some muted small print.</small>
-                    </a>
-                </div>
+                    <% end %>
+                    <% end %>
+                <% end %>
             </div>
         </div>
         <div class="col-md-3">
             <h3> Forwarded </h3>
              <div class="trackContainer">
-                <div class="list-group p-1">
-                    <a href="#" class="list-group-item list-group-item-action">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Sample processing doc</h5>
-                            <small class="text-body-secondary">3 days ago</small>
+               <% @routes.each do |route| %>
+                    <% if logged_in? && (route.receiving_user == current_user || current_user.admin?) %>
+                    <% if route.action_id == 2 %>
+                        <div class="list-group p-1">
+                            <a href="routes/<%= route.id %>" class="list-group-item list-group-item-action" aria-current="true">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1"><%= route.document.name %></h5>
+                                    <small> <%= time_ago_in_words(route.created_at) %> ago</small>
+                                </div>
+                                <h6> <span class="badge bg-success"><%= route.document.category.name %></span></h6>
+                                <small>from <%= route.document.user.username %></small>
+                            </a>
                         </div>
-                        <h6> <span class="badge bg-success"> Activity Proposal </span></h6>
-                        <small class="text-body-secondary">And some muted small print.</small>
-                    </a>
-                </div>
+                    <% end %>
+                    <% end %>
+                <% end %>
             </div>
         </div>
     </div>
+    <div class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+            </div>
+        </div>
+        </div>
 </div>
 

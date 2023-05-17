@@ -1,3 +1,3 @@
 class Status < ApplicationRecord
-    has_many :routes
+    has_many :documents
 end

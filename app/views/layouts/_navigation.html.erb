@@ -1,6 +1,6 @@
-<nav class="navbar navbar-dark navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-dark navbar-expand-lg ">
   <div class="container-fluid">
-    <%= link_to root_path, class: 'navbar-brand' do %>
+    <%= link_to root_path, class: 'navbar-brand pe-5' do %>
       <%= image_tag "bitmap_Layer 1.png", width: 38 %>
     <% end %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,35 +8,19 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <%= link_to "Dashboard", dashboard_path, class: "nav-link" %>
-        </li>
         <% if logged_in? %>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Documents
-          </a>
-          <ul class="dropdown-menu">
-            <li>
-              <%= link_to "View Documents", routes_path, class: "dropdown-item" %>
-            </li>
-            <li>
-              <%= link_to "Create Document", new_document_path, class: "dropdown-item" %>
-            </li>
-          </ul>
-        </li>
           <li class="nav-item">
-            <%= link_to "Users", users_path, class: "nav-link" %>
+            <%= link_to "Users", '#', class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Doc Types", categories_path, class: "nav-link" %>
+            <%= link_to "Categories", '#', class: "nav-link" %>
           </li>
         <% end %>
         <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
+          <a class="nav-link" href="#">Doc Settings</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
+          <a class="nav-link" href="#">Offices</a>
         </li>
       </ul>
       <div>

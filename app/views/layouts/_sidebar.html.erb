@@ -1,0 +1,43 @@
+
+    <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+        <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+            <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                <li class="nav-item">
+                    <%= link_to dashboard_path, class: "nav-link align-middle px-0" do %>
+                        <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span>
+                    <% end %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to new_document_path, class: "nav-link align-middle px-0", data: {controller: 'document-modal'} do %>
+                        <i class="fs-4 bi-plus-square-fill"></i> <span class="ms-1 d-none d-sm-inline">New log</span>
+                    <% end %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to documents_path, class: "nav-link align-middle px-0" do %>
+                        <i class="fs-4 bi-file-text"></i> <span class="ms-1 d-none d-sm-inline">My logs</span>
+                    <% end %>
+                </li>
+                <li>
+                    <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                        <span class="ms-1 d-none d-sm-inline">Route Logs</span> </a>
+                    <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                        <li class="ps-2 w-100">
+                            <%= link_to '#', class: "nav-link px-0" do %>
+                                <i class="fs-4 bi-exclamation-square"></i> <span class="ms-1 d-none d-sm-inline">Pending</span>
+                            <% end %>
+                        </li>
+                        <li class="ps-2 w-100">
+                            <%= link_to '#', class: "nav-link px-0" do %>
+                                <i class="fs-4 bi-recycle"></i> <span class="ms-1 d-none d-sm-inline">Processing</span>
+                            <% end %>
+                        </li>
+                        <li class="ps-2 w-100">
+                            <%= link_to '#', class: "nav-link px-0" do %>
+                                <i class="fs-4 bi-clipboard2-check"></i> <span class="ms-1 d-none d-sm-inline">Completed</span>
+                            <% end %>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
