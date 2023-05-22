@@ -1,5 +1,5 @@
 <div id="<%= dom_id document %>">
-    <%= link_to document_path(document), class: "list-group-item list-group-item-action", role: "button", data: { controller: 'document-modal '} do %>
+    <%= link_to document_path(document), class: "list-group-item list-group-item-action", role: "button" do %>
             <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1"><%= document.name %></h5>
                 <small> <%= time_ago_in_words(document.created_at) %> ago</small>

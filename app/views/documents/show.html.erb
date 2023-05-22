@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-6 p-5">
+  <h3 class="mb-3">Document Information: </h3>
+    <div class="row mb-2">
+      <div class="col-lg-3 col-sm-12">
+        <p><strong>Title: </strong></p>
+      </div>
+      <div class="col-lg-9 col-sm-12">
+        <p><%= @document.name %></p>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-lg-3 col-sm-12">
+        <p><strong>Description: </strong></p>
+      </div>
+      <div class="col-lg-9 col-sm-12">
+        <p><%= @document.description %></p>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-lg-3 col-sm-12">
+        <p><strong>Category: </strong></p>
+      </div>
+      <div class="col-lg-9 col-sm-12">
+        <p> <span class="badge bg-success"><%= @document.category.name %></span></p>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-lg-3 col-sm-12">
+        <p><strong>Status: </strong></p>
+      </div>
+      <div class="col-lg-9 col-sm-12">
+        <p> <%= @document.status.statusName   %> </p>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="d-grid gap-2 d-md-block">
+        <button class="btn btn-primary mx-2">Edit</button>
+        <button class="btn btn-secondary mx-2">Delete</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-6 p-5 mb-3">
+    <h3 class="mb-3">Route Information: </h3>
+      <ul class="list-group list-group-flush">
+        <% @routes.each do |route| %>
+          <li class="list-group-item"><%= route.receiving_user.username %></li>
+        <% end %>
+      </ul>
+  </div>
+</div>
