@@ -1,10 +1,10 @@
 class DocumentsController < ApplicationController
+    before_action :all_documents, only: [:index, :pending, :processing, :completed]
     before_action :set_documents, only: [:show, :edit, :update, :destroy]
     before_action :require_user
     before_action :require_same_user, only: [:destroy]
 
     def index
-        @documents = Document.all
     end
 
     def show
@@ -36,11 +36,9 @@ class DocumentsController < ApplicationController
     end
 
     def edit
-        @document = Document.find(params[:id])
     end
 
     def update
-        @document = Document.find(params[:id])
         if @document.update(document_params)
             redirect_to @document, notice: "You have successfully edit a document!"
         else
@@ -49,12 +47,24 @@ class DocumentsController < ApplicationController
     end
 
     def destroy
-        @document = Document.find(params[:id])
         @document.destroy
         redirect_to documents_path, status: :see_other, notice: "You have successfully deleted a document!"
     end
 
+    def pending
+    end
+
+    def processing
+    end
+
+    def completed
+    end
+
     private
+
+    def all_documents
+        @documents = Document.all
+    end
     
     def set_documents
         @document = Document.find(params[:id])

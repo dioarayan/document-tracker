@@ -22,17 +22,17 @@
                         <span class="ms-1 d-none d-sm-inline">Route Logs</span> </a>
                     <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                         <li class="ps-2 w-100">
-                            <%= link_to '#', class: "nav-link px-0" do %>
+                            <%= link_to pending_documents_path, class: "nav-link px-0" do %>
                                 <i class="fs-4 bi-exclamation-square"></i> <span class="ms-1 d-none d-sm-inline">Pending</span>
                             <% end %>
                         </li>
                         <li class="ps-2 w-100">
-                            <%= link_to '#', class: "nav-link px-0" do %>
+                            <%= link_to processing_documents_path, class: "nav-link px-0" do %>
                                 <i class="fs-4 bi-recycle"></i> <span class="ms-1 d-none d-sm-inline">Processing</span>
                             <% end %>
                         </li>
                         <li class="ps-2 w-100">
-                            <%= link_to '#', class: "nav-link px-0" do %>
+                            <%= link_to completed_documents_path, class: "nav-link px-0" do %>
                                 <i class="fs-4 bi-clipboard2-check"></i> <span class="ms-1 d-none d-sm-inline">Completed</span>
                             <% end %>
                         </li>

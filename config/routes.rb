@@ -11,11 +11,15 @@ Rails.application.routes.draw do
   
   resources :documents do
     resources :routes
+    get 'pending', on: :collection
+    get 'processing', on: :collection
+    get 'completed', on: :collection
   end
 
   resources :routes do
     resources :likes, only: [:create, :destroy]
   end
+  
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

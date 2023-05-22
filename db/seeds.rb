@@ -20,6 +20,12 @@ User.create!([
         email: "user@test.com",
         password: "user123",
         admin: false
+    },
+    {
+        username: "dio",
+        email: "dio@test.com",
+        password: "dio123",
+        admin: false
     }
 ])
 
@@ -37,5 +43,20 @@ Category.create!([
     },
 ])
 
+Status.destroy_all
+
+Status.create!([
+    {
+        statusName: "pending"
+    },
+    {
+        statusName: "processing"
+    },
+    {
+        statusName: "completed"
+    }
+])
+
 p "Created #{User.count} Users"
 p "Created #{Category.count} Category"
+p "Created #{Status.count} Status   "
