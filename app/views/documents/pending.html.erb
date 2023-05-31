@@ -4,8 +4,8 @@
     <div class="trackContainer">
        <div class="list-group p-1">
             <% @documents.each do |document| %>
-                <% if document.status_id == 1 %>
-                    <%= render 'documents/document', document: document %>
+                <% if logged_in? && document.routes.last.receiving_user == current_user %>
+                    <%= render 'document', document: document %>
                 <% end %>
             <% end %>
         </div> 

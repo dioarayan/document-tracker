@@ -1,8 +1,12 @@
 <div class="container">
-    <% flash.each do |name, msg| %>
-        <div class="alert alert-<%= name == 'notice' ? 'success' : 'danger' %> alert-dismissible fade show mt-3" role="alert">
-            <strong><%= msg %></strong> 
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <div class="row justify-content-center">
+        <div class="col-8 position-absolute messages">
+            <% flash.each do |name, msg| %>
+                <div class="alert alert-<%= name == 'notice' ? 'success' : 'danger' %> alert-dismissible fade show mt-3" role="alert">
+                    <strong><%= msg %></strong> 
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <% end %>
         </div>
-    <% end %>
+    </div>
 </div>

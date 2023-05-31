@@ -10,12 +10,12 @@ Rails.application.routes.draw do
   resources :categories
   
   resources :documents do
-    resources :routes
+    resources :routes 
     get 'pending', on: :collection
     get 'processing', on: :collection
     get 'completed', on: :collection
   end
-
+  
   resources :routes do
     resources :likes, only: [:create, :destroy]
   end

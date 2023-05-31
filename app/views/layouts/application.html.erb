@@ -12,15 +12,15 @@
   </head>
 
   <body>
-  <%= render 'layouts/navigation' %>
   <%= render 'layouts/messages' %>
+  <%= render 'layouts/navigation' %>
 
   <main>
   <%= turbo_frame_tag 'remote_modal'  %>
     <div class="container-fluid p-0">
       <div class="row">
           <%= render 'layouts/sidebar' %>
-          <div class="col overflow-auto">
+          <div class="col-auto col-md-9 col-xl-10">
             <%= yield %>
           </div>
       </div>

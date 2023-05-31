@@ -4,20 +4,10 @@ body,
 html {
   margin: 0;
   height: 100%;
-  overflow: auto;
-}
-
-html {
-  background-color: grey;
 }
 
 nav {
   background-color: #433d3c;
-}
-
-.screen {
-  min-height: 100vh;
-  height: 100%;
 }
 
 .txtPageTitle {
@@ -80,7 +70,14 @@ hr {
   background-color: #cdcdcd;
 }
 
-button {
-  width: 180px;
+.sidebar {
+  min-height: 90vh;
+}
+
+.messages {
+  z-index: 2147483647;
+  top: 80px;
+  transform: translateX(-70%);
+  transform: translateY(-50%);
 }
 

@@ -1,0 +1,9 @@
+  <%= bootstrap_form_for(route, document) do |f| %>
+            <%= f.static_control :document_id, value: route.document_id %>
+            <% f.fields_for(:document) do |d| %>
+                <%= f.static_control :document.name, value: document.name %>
+                <%= f.static_control :document.description, value: document.description %>
+            <% end %>
+            <%= f.text_area :remarks %>
+        <%= f.primary %>            
+    <% end %>
