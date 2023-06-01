@@ -1,6 +1,9 @@
 <%= bootstrap_form_for(document) do |f| %>
         <div class="modal-body">
             <%= f.select :category_id, Category.all.collect{ |p| [ p.name, p.id ]}, { prompt: "Choose document category"} %>
+            <%= f.select :division_id, Division.all.collect{ |p| [ p.name, p.id ]}, { prompt: "Choose document category"}, data: { action: "change->division#change"} %>
+            <%= f.select :section_id, Section.all.collect{ |p| [ p.name, p.id ]}, { prompt: "Choose document category"} %>
+            <%= f.grouped_collection_select :section_id, Division.order(:name), :sections, :name, :id, :name, { prompt: "Choose origin"} %>
             <%= f.text_field :name %>
             <%= f.text_area :description, readonly: true %>
                 <%= f.fields_for(:routes, Route.new) do |r| %>
