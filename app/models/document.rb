@@ -3,7 +3,6 @@ class Document < ApplicationRecord
     belongs_to :category
     belongs_to :status
     belongs_to :section
-    belongs_to :division
     has_many :routes, dependent: :destroy
     accepts_nested_attributes_for :routes
     validates :name, presence: true, length: { minimum: 6 }

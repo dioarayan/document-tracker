@@ -1,5 +1,5 @@
 class DocumentsController < ApplicationController
-    before_action :set_documents, only: [:show, :edit, :update, :destroy]
+    before_action :set_documents, only: [:show, :edit, :update, :destroy, :preview]
     before_action :require_user
     before_action :require_same_user, only: [:destroy]
 
@@ -26,7 +26,7 @@ class DocumentsController < ApplicationController
             else
                 format.turbo_stream { render turbo_stream: turbo_stream.replace(
                 'remote_modal', partial: 'documents/form_modal', locals: {document: @document})}
-                format.html { render :new, status: :unprocessable_entity }
+                format.html { render :new, status: :unprocessable_entity, alert: "Error in creating new document" }
             end
         end
     end
@@ -64,8 +64,10 @@ class DocumentsController < ApplicationController
         @documents = Document.where(status: 3)
     end
 
-    def to_route?
-        
+    def preview
+       respond_to do |format|
+        format.turbo_stream
+       end
     end
 
     private
@@ -75,7 +77,7 @@ class DocumentsController < ApplicationController
     end
 
     def document_params
-        params.require(:document).permit(:name, :description, :category_id, :status_id, routes_attributes: [:receiving_user_id, :remarks])
+        params.require(:document).permit(:name, :description, :category_id, :status_id, :section_id, routes_attributes: [:receiving_user_id])
     end
 
     def require_same_user

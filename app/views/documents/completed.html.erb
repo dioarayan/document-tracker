@@ -1,6 +1,6 @@
 <div class="row justify-content-center">
-  <div class="col-6">
-    <h1>Completed documents</h1>
+  <div class="col-6 p-3">
+    <h4>Completed documents</h4>
     <div class="trackContainer">
        <div class="list-group p-1">
             <% @documents.each do |document| %>
@@ -11,10 +11,9 @@
         </div> 
     </div>
   </div>
-  <div class="col-6">
-    <h1>Pending documents</h1>
-    <div class="trackContainer">
-       
+   <div class="col-6 p-3">
+      <h4>Document Information</h4>
+        <div id="doc_details">
+        </div>
     </div>
-  </div>
-</div>;
+</div>
