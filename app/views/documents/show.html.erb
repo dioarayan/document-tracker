@@ -1,0 +1,72 @@
+<div class="row d-flex flex-lg-row flex-sm-column flex-xs-column">
+  <div class="col-7 p-5 d-flex flex-column" style="height: 600px">
+    <div class="document_list">
+      <h3 class="mb-3">Document Information: </h3>
+      <div class="row mb-1">
+        <div class="col-lg-3 col-sm-12">
+          <p><strong>Title: </strong></p>
+        </div>
+        <div class="col-lg-9 col-sm-12">
+          <p><%= @document.name %></p>
+        </div>
+      </div>
+      <div class="row mb-1">
+        <div class="col-lg-3 col-sm-12">
+          <p><strong>Description: </strong></p>
+        </div>
+        <div class="col-lg-9 col-sm-12">
+          <p><%= @document.description %></p>
+        </div>
+      </div>
+      <div class="row mb-1">
+        <div class="col-lg-3 col-sm-12">
+          <p><strong>Category: </strong></p>
+        </div>
+        <div class="col-lg-9 col-sm-12">
+          <p> <span class="badge bg-success"><%= @document.category.name %></span></p>
+        </div>
+      </div>
+      <div class="row mb-1">
+        <div class="col-lg-3 col-sm-12">
+          <p><strong>Status: </strong></p>
+        </div>
+        <div class="col-lg-9 col-sm-12">
+          <p> <%= @document.status.statusName   %> </p>
+        </div>
+      </div>
+      <div class="row mb-1">
+        <div class="col-lg-3 col-sm-12">
+          <p><strong>Origin: </strong></p>
+        </div>
+        <div class="col-lg-9 col-sm-12">
+          <p> Office of the Schools Division Superintendent </p>
+        </div>
+      </div>
+      <div class="row mb-1">
+        <% if logged_in? && (@document.user == current_user || current_user.admin?) %>
+          <div class="d-grid gap-2 d-md-block">
+            <%= link_to "Edit", edit_document_path(@document), class: "btn btn-primary", data: {controller: 'document-modal'} %>
+            <%= link_to "Delete", document_path(@document), class: "btn btn-secondary", data: {
+                        turbo_method: :delete,
+                        turbo_confirm: "Are you sure?"
+                      } %>
+          </div>
+        <% end %>  
+      </div>
+    </div>
+  </div>
+  <div class="col-5 p-5 mb-3">
+    <h3 class="mb-3">Route Information: </h3>
+      <ul class="list-group list-group-flush">
+        <% @routes.each do |route| %>
+          <li class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+              <p class="mb-1">from <%= route.document.user == current_user ? "you" : route.document.user.username %> to 
+              <%= route.receiving_user == current_user ? "you" : route.receiving_user.username %></p>
+              <small><%= route.created_at.to_fs(:short) %></small>
+            </div>    
+          </li>
+        <% end %>
+      </ul>
+  </div>
+</div>

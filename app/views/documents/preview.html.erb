@@ -1,0 +1,18 @@
+<div class="row d-flex flex-lg-row flex-sm-column flex-xs-column">
+  <div class="col-7 p-5 d-flex flex-column justify-content-center" style="height: 600px">
+    <div class="document_controls">
+    <h3 class="mb-3">Document Information: </h3>
+      <%= form_with url: document_accept_path(@document), model: @document do |doc| %>
+        <%= doc.text_field :name %>
+        <%= doc.text_area :description %>
+        <%= doc.text_field :user_id %>
+        <%= doc.text_field :category_id %>
+        <%= doc.text_field :status_id %>
+        <%= doc.fields_for(:routes, Route.new) do |route| %>
+          <%= route.text_area :remarks, value: 'received' %>
+        <%= doc.submit "Accept", class: "btn btn-success" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

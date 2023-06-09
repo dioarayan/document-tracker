@@ -13,16 +13,17 @@ class RoutesController < ApplicationController
     
     def new
         @route = Route.new
-        @document = Document.find(params[:document_id])
+        @document = @route.find(params[:document_id])
     end
     
     def create
         @route = Route.new(route_params) 
-        debugger
+        @route.receiving_user = current_user 
+        debugger   
         if @route.save
-            redirect_to @route, notice: "You have successfully routed a document!"
+            redirect_to processing_documents_path, notice: "You have successfully routed a document!"
         else
-            render :new, status: :unprocessable_entity
+            render :documents/edit, status: :unprocessable_entity
         end
     end
 
@@ -42,7 +43,7 @@ class RoutesController < ApplicationController
     private
 
     def route_params
-        params.require(:route).permit(:document_id, :receiving_user_id, :action_id, :remarks)
+        params.require(:route).permit(:document_id, document_attributes: [:status_id])
     end
 
 end

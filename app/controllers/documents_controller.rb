@@ -1,10 +1,10 @@
 class DocumentsController < ApplicationController
-    before_action :all_documents, only: [:index, :pending, :processing, :completed]
-    before_action :set_documents, only: [:show, :edit, :update, :destroy]
+    before_action :set_documents, only: [:show, :edit, :update, :destroy, :preview]
     before_action :require_user
     before_action :require_same_user, only: [:destroy]
 
     def index
+        @documents = Document.all
     end
 
     def show
@@ -19,18 +19,14 @@ class DocumentsController < ApplicationController
 
     def create
         @document = Document.new(document_params)
-        @document.user = current_user   
-        respond_to do |format|
+        @document.user = current_user 
+        respond_to do |format|  
             if @document.save
-                format.turbo_stream { render turbo_stream: turbo_stream.append(
-                'document_list', partial: 'documents/document', locals: {document: @document})}
-                format.html { redirect_to document_url(@document), notice: "Document was successfully created." }
-                format.json { render :show, status: :created, location: @document }
+                format.html{ redirect_to @document, notice: "You have successfully created a new document" }
             else
                 format.turbo_stream { render turbo_stream: turbo_stream.replace(
                 'remote_modal', partial: 'documents/form_modal', locals: {document: @document})}
-                format.html { render :new, status: :unprocessable_entity }
-                format.json { render json: @document.errors, status: :unprocessable_entity }
+                format.html { render :new, status: :unprocessable_entity, alert: "Error in creating new document" }
             end
         end
     end
@@ -39,10 +35,15 @@ class DocumentsController < ApplicationController
     end
 
     def update
-        if @document.update(document_params)
-            redirect_to @document, notice: "You have successfully edit a document!"
-        else
-            render :edit, status: :unprocessable_entity
+        debugger
+        respond_to do |format|
+            if @document.update(document_params)
+                format.html { redirect_to @document, notice: "You have successfully edit a document!" }
+            else
+                format.turbo_stream { render turbo_stream: turbo_stream.replace(
+                'remote_modal', partial: 'documents/form_modal', locals: {document: @document})}
+                format.html { render :new, status: :unprocessable_entity }
+            end
         end
     end
 
@@ -52,26 +53,31 @@ class DocumentsController < ApplicationController
     end
 
     def pending
+        @documents = Document.where(status: 1)
     end
 
     def processing
+        @documents = Document.where(status: 2)
     end
 
     def completed
+        @documents = Document.where(status: 3)
+    end
+
+    def preview
+       respond_to do |format|
+        format.turbo_stream
+       end
     end
 
     private
-
-    def all_documents
-        @documents = Document.all
-    end
     
     def set_documents
         @document = Document.find(params[:id])
     end
 
     def document_params
-        params.require(:document).permit(:name, :description, :category_id, routes_attributes: [:receiving_user_id])
+        params.require(:document).permit(:name, :description, :category_id, :status_id, :section_id, routes_attributes: [:receiving_user_id])
     end
 
     def require_same_user

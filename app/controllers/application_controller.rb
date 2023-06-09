@@ -1,13 +1,9 @@
 class ApplicationController < ActionController::Base
 
-    helper_method :current_user, :logged_in?, :document_route
+    helper_method :current_user, :logged_in?
 
     def current_user
         @_current_user ||= User.find(session[:current_user_id]) if session[:current_user_id]
-    end
-
-    def document_route
-        @_document_route ||= Document.find(params[:document_id]) if params[:document_id]
     end
 
     def logged_in?
@@ -25,5 +21,5 @@ class ApplicationController < ActionController::Base
             redirect_to login_path, alert: "You must have administrative-level privilage in performing such actions"
         end
     end
-    
+
 end

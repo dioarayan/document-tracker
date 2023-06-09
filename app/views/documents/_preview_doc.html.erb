@@ -1,0 +1,11 @@
+<%= turbo_frame_tag "document_#{document.id}" do %>
+      <%= bootstrap_form_for(document) do |doc| %>
+        <%= doc.static_control :name, label_class: "label_preview", wrapper: { class: 'd-flex flex-row m-3'} %>
+        <%= doc.static_control :description, label_class: "label_preview", wrapper: { class: 'd-flex flex-row m-3'} %>
+        <%= doc.static_control :user_id, label_class: "label_preview", wrapper: { class: 'd-flex flex-row m-3'}, value: document.user.username %>
+        <%= doc.static_control :category_id, label_class: "label_preview", wrapper: { class: 'd-flex flex-row m-3'}, value: document.category.name %>
+        <%= doc.static_control :status_id, label_class: "label_preview", wrapper: { class: 'd-flex flex-row m-3'}, value: document.status.statusName %>
+        <%= doc.submit "Accept", class: "btn btn-success" %>
+        <%= doc.submit "Reject", class: "btn btn-danger" %>
+      <% end %>
+  <% end %>

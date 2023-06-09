@@ -10,15 +10,18 @@ Rails.application.routes.draw do
   resources :categories
   
   resources :documents do
-    resources :routes
-    get 'pending', on: :collection
-    get 'processing', on: :collection
-    get 'completed', on: :collection
+    resources :routes 
+    collection do
+      get 'pending'
+      get 'processing'
+      get 'completed'
+      get '/preview/:id', to: "documents#preview"
+    end
   end
-
-  resources :routes do
-    resources :likes, only: [:create, :destroy]
-  end
+  
+  #resources :routes do
+  #  resources :likes, only: [:create, :destroy]
+  #end
   
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

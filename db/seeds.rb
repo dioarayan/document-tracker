@@ -57,6 +57,55 @@ Status.create!([
     }
 ])
 
+Division.destroy_all
+
+Division.create!([
+    {
+        name: "Office of the Schools Division Superintendent"
+    },
+    {
+        name: "Schools Governance Operations Division"
+    },
+    {
+        name: "Curriculum Implementation Division"
+    }
+])
+
+Section.destroy_all
+
+Section.create!([
+    {
+        division_id: 1,
+        name: "Office of the SDS-Proper"
+    },
+    {
+        division_id: 1,
+        name: "Office of the ASDS"
+    },
+    {
+        division_id: 1,
+        name: "Records"
+    },
+    {
+        division_id: 2,
+        name: "Office of the CES_SGOD"
+    },
+    {
+        division_id: 2,
+        name: "School Monitoring and Management Evaluation"
+    },
+    {
+        division_id: 3,
+        name: "Office of the CES-CID",
+    },
+    {
+        division_id: 3,
+        name: "Learning Resource Management"
+    }
+])
+
 p "Created #{User.count} Users"
 p "Created #{Category.count} Category"
-p "Created #{Status.count} Status   "
+p "Created #{Status.count} Status"
+p "Created #{Division.count} Division"
+p "Created #{Section.count} Section"
