@@ -3,11 +3,13 @@
     <h4>Completed documents</h4>
     <div class="trackContainer">
        <div class="list-group p-1">
-            <% @documents.each do |document| %>
-                <% if document.status_id == 3 %>
-                    <%= render 'documents/document', document: document %>
+           <% Array(@routes).each do |route| %>
+              <% if logged_in? && route.receiving_user == current_user %>
+                <%= turbo_frame_tag "document_#{route.document.id}" do %>
+                    <%= render 'documents/document', document: route.document %>
                 <% end %>
-            <% end %>
+              <% end %>
+          <% end %>
         </div> 
     </div>
   </div>

@@ -1,6 +1,6 @@
 <div id="<%= dom_id document %>">
   <% if action_name == "pending" %>
-    <%= link_to "/documents/preview/#{document.id}", class: "list-group-item list-group-item-action", role: "button", data: {turbo_stream: "document_#{document.id}" } do %>
+    <%= link_to new_document_route_path(document.id), class: "list-group-item list-group-item-action", role: "button", data: { controller: 'document-modal' } do %>
       <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1"><%= document.name %></h5>
           <small> <%= time_ago_in_words(document.created_at) %> ago</small>
@@ -15,7 +15,8 @@
           <small> <%= time_ago_in_words(document.created_at) %> ago</small>
       </div>
       <h6> <span class="badge bg-success"><%= document.category.name %></span></h6>
-      <small><i>forwarded from</i><b> <%= document.user.username %></b></small>
+      <p><%= document.description %></p>
+      
     <% end %>    
   <% end %>
 </div>

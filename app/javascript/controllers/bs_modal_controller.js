@@ -24,8 +24,8 @@ export default class extends Controller {
     }
   }
 
-  isOpen() {
-    return this.element.classList.contains('show');
-  }
+  // isOpen() {
+  //   return this.element.classList.contains('show');
+  // }
 }
 
