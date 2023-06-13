@@ -1,5 +1,5 @@
 class DocumentsController < ApplicationController
-    before_action :set_documents, only: [:show, :edit, :update, :destroy, :preview]
+    before_action :set_documents, only: [:show, :edit, :update, :destroy]
     before_action :require_user
     before_action :require_same_user, only: [:destroy]
 
@@ -8,7 +8,6 @@ class DocumentsController < ApplicationController
     end
 
     def show
-        @document = Document.find(params[:id])
         @routes = @document.routes
         @route = Route.new
     end
@@ -52,22 +51,12 @@ class DocumentsController < ApplicationController
         redirect_to documents_path, status: :see_other, notice: "You have successfully deleted a document!"
     end
 
-    def pending
-        @documents = Document.where(status: 1)
-    end
-
-    def processing
-        @documents = Document.where(status: 2)
-    end
-
-    def completed
-        @documents = Document.where(status: 3)
-    end
-
     def preview
-       respond_to do |format|
-        format.turbo_stream
-       end
+        @document = Document.find(params[:document_id])
+        @route = Route.new
+        respond_to do |format|
+            format.turbo_stream
+        end
     end
 
     private
@@ -77,7 +66,7 @@ class DocumentsController < ApplicationController
     end
 
     def document_params
-        params.require(:document).permit(:name, :description, :category_id, :status_id, :section_id, routes_attributes: [:receiving_user_id])
+        params.require(:document).permit(:name, :description, :category_id, :status_id, :section_id)
     end
 
     def require_same_user

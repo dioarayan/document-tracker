@@ -3,11 +3,11 @@
         data-controller="bs-modal">
     <div class="modal-dialog">
         <div class="modal-content">
-        <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Review document</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <%= render "form", locals: {route, document} %>
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Route document</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <%= render "routes/form", locals: {route: @route, document: @document}  %>
         </div>
     </div>
     </div>

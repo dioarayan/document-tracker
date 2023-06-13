@@ -45,7 +45,8 @@
       <div class="row mb-1">
         <% if logged_in? && (@document.user == current_user || current_user.admin?) %>
           <div class="d-grid gap-2 d-md-block">
-            <%= link_to "Edit", edit_document_path(@document), class: "btn btn-primary", data: {controller: 'document-modal'} %>
+            <%= link_to "Forward to", new_document_route_path(@document), class: "btn btn-success", data: {controller: 'document-modal'} %>
+            <%= link_to "Edit", edit_document_path(@document), class: "btn btn-primary", data: {controller: 'document-modal'}  %>
             <%= link_to "Delete", document_path(@document), class: "btn btn-secondary", data: {
                         turbo_method: :delete,
                         turbo_confirm: "Are you sure?"

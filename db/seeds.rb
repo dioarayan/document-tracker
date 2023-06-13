@@ -104,6 +104,9 @@ Section.create!([
     }
 ])
 
+Document.destroy_all
+Route.destroy_all
+
 p "Created #{User.count} Users"
 p "Created #{Category.count} Category"
 p "Created #{Status.count} Status"

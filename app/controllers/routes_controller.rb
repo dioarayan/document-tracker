@@ -1,5 +1,6 @@
 class RoutesController < ApplicationController
     before_action :require_user
+    before_action :set_document, only: [:new, :create, :show]
 
     def index
         @routes = Route.all
@@ -7,23 +8,23 @@ class RoutesController < ApplicationController
 
     def show
         @route = Route.find(params[:id])
-        @document = Document.find(params[:document_id])
         @routes = @document.routes
     end
     
     def new
         @route = Route.new
-        @document = @route.find(params[:document_id])
     end
     
     def create
-        @route = Route.new(route_params) 
-        @route.receiving_user = current_user 
-        debugger   
-        if @route.save
-            redirect_to processing_documents_path, notice: "You have successfully routed a document!"
-        else
-            render :documents/edit, status: :unprocessable_entity
+        @route = Route.new(route_params)
+        respond_to do |format|  
+            if @route.save
+                format.html{ redirect_to @document, notice: "You have successfully routed a document" }
+            else
+                format.turbo_stream { render turbo_stream: turbo_stream.replace(
+                'remote_modal', partial: 'routes/form_modal', locals: {route: @route})}
+                format.html { render :new, status: :unprocessable_entity, alert: "Error in routing a document" }
+            end
         end
     end
 
@@ -43,7 +44,11 @@ class RoutesController < ApplicationController
     private
 
     def route_params
-        params.require(:route).permit(:document_id, document_attributes: [:status_id])
+        params.require(:route).permit(:document_id, :receiving_user_id, :remarks, :status_id, :accept)
+    end
+
+    def set_document
+        @document = Document.find(params[:document_id])
     end
 
 end
