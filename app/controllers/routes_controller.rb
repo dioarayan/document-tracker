@@ -41,6 +41,11 @@ class RoutesController < ApplicationController
         end
     end
 
+    def destroy
+        @route.destroy
+        redirect_to routes_path, status: :see_other, notice: "You have successfully deleted a route!"
+    end
+
     private
 
     def route_params

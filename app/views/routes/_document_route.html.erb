@@ -1,0 +1,10 @@
+<div id="<%= dom_id route %>">
+    <%= link_to document_route_path(route.document, route), class: "list-group-item list-group-item-action", role: "button" do %>
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1"><%= route.document.name %></h5>
+            <small> <%= time_ago_in_words(route.document.created_at) %> ago</small>
+        </div>
+        <h6> <span class="badge bg-success"><%= route.document.category.name %></span></h6>
+        <small><i>forwarded from</i><b> <%= route.document.user.username %></b></small>
+    <% end %>
+</div>
