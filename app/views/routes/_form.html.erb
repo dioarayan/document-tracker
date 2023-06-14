@@ -1,8 +1,5 @@
 <div class="modal-body">
-    
-    <p><strong>Name/Title: </strong> <%= @document.name %></p>
-    <p><strong>Description: </strong> <%= @document.description %></p>
-    <p><strong>Origin: </strong> <%= @document.section.name %></p>
+
     <%= bootstrap_form_with(model: [@document, @route]) do |f| %>
         <%= f.hidden_field :document_id, value: @document.id %>
         <%= f.select :receiving_user_id, User.all.collect{ |u| [u.username, u.id]}, {prompt: "Forward to"} %>
