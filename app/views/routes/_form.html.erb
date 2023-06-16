@@ -4,9 +4,9 @@
         <%= f.hidden_field :document_id, value: @document.id %>
         <%= f.select :receiving_user_id, User.all.collect{ |u| [u.username, u.id]}, {prompt: "Forward to"} %>
         <%= f.text_area :remarks %>
-    </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <%= f.submit "Send", class: "btn btn-primary", data: {action: "click->bs-modal#submitForm"} %> 
     </div>
-<% end %>
+    <% end %>
+</div>

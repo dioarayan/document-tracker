@@ -45,8 +45,12 @@
       <div class="row mb-1">
         <% if logged_in? && (@route.document.user == current_user || current_user.admin?) %>
           <div class="d-grid gap-2 d-md-block">
-            <%= link_to "Accept", new_document_route_path(@document), class: "btn btn-success", data: {controller: 'document-modal'} %>
-            <%= link_to "Reject", routes_path(@route), class: "btn btn-secondary", data: {
+            <%= form_tag(document_route_path(@document, @route), method: :patch, remote: true) do %>
+              <%= hidden_field_tag :_method, :patch %>
+              <%= hidden_field_tag "route[status_id]", Route::Status::Accepted %>
+              <input type="submit" value="Accept" class="btn btn-success">
+            <% end %>
+            <%= link_to "Reject", document_route_path(@document, @route), method: :delete, class: "btn btn-secondary", data: {
                         turbo_method: :delete,
                         turbo_confirm: "Are you sure?"
                       } %>

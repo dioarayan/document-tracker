@@ -1,6 +1,6 @@
 class RoutesController < ApplicationController
     before_action :require_user
-    before_action :set_document, only: [:new, :create, :show]
+    before_action :set_document, only: [:new, :create, :show, :edit]
 
     def index
         @routes = Route.all
@@ -35,21 +35,25 @@ class RoutesController < ApplicationController
     def update
         @route = Route.find(params[:id])
         if @route.update(route_params)
-            redirect_to @route, notice: "You have successfully edit a document!"
+            redirect_to request.path, notice: "You have successfully edit a document!"
         else
-            render :edit, status: :unprocessable_entity
+            redirect_to request.path, status: :unprocessable_entity, notice: "Error accepting document!"
         end
     end
 
     def destroy
-        @route.destroy
-        redirect_to routes_path, status: :see_other, notice: "You have successfully deleted a route!"
+        @route = Route.find(params[:id])
+        if @route.destroy
+            redirect_to pending_path, notice: "You have successfully rejected a document!"
+        else
+            redirect_to request.path, status: :unprocessable_entity, notice: "Error rejecting document!"
+        end
     end
 
     private
 
     def route_params
-        params.require(:route).permit(:document_id, :receiving_user_id, :remarks, :status_id, :accept)
+        params.require(:route).permit(:document_id, :receiving_user_id, :remarks, :status_id)
     end
 
     def set_document
