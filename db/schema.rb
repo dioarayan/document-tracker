@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_13_012112) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_16_062824) do
   create_table "actions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -51,7 +51,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_012112) do
     t.datetime "updated_at", null: false
     t.integer "receiving_user_id"
     t.integer "status_id", default: 1
-    t.boolean "accept", default: false
     t.index ["document_id"], name: "index_routes_on_document_id"
     t.index ["receiving_user_id"], name: "index_routes_on_receiving_user_id"
     t.index ["status_id"], name: "index_routes_on_status_id"

@@ -13,11 +13,7 @@ Rails.application.routes.draw do
   get 'completed', to: 'pages#completed'
   
   resources :documents do
-    get '/preview', to: "documents#preview"
-    resources :routes do
-      get '/accept', to: 'routes#new'
-      get '/reject', to: 'routes#destroy'
-    end 
+    resources :routes 
   end
 
 # resources :routes do
