@@ -8,12 +8,12 @@ services:
       - .:/app
       - gem_cache:/usr/local/bundle/gems
     working_dir: /app
-    environment:
-      RAILS_ENV: development
     command: bundle exec rails server -b 0.0.0.0 -p 3000
     shm_size: 1gb
     ports: 
       - "3000:3000"
+    tty: true
+    stdin_open: true
 
 volumes:
   gem_cache:
