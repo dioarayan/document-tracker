@@ -1,6 +1,8 @@
 set -xe
 
 cp docker-compose.yml.sample docker-compose.yml
+cp config/database.yml.sample config/database.yml
+cp .env.sample .env
 docker-compose build
 docker-compose pull
 docker-compose run --rm app bundle install

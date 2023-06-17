@@ -6,8 +6,9 @@ services:
     user: root
     volumes:
       - .:/app
-      - gem_cache:/usr/local/bundle/gems
+      - gem_cache:/usr/local/bundle
     working_dir: /app
+    env_file: .env
     command: bundle exec rails server -b 0.0.0.0 -p 3000
     shm_size: 1gb
     ports: 
