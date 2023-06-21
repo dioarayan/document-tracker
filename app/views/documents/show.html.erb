@@ -45,7 +45,9 @@
       <div class="row mb-1">
         <% if logged_in? && (@document.user == current_user || current_user.admin?) %>
           <div class="d-grid gap-2 d-md-block">
-            <%= link_to "Forward to", new_document_route_path(@document), class: "btn btn-success", data: {controller: 'document-modal'} %>
+            <% if !@document.routes.any? && @document.status_id == 1   %>
+              <%= link_to "Forward to", new_document_route_path(@document), class: "btn btn-success", data: {controller: 'document-modal'} %>
+            <% end %>
             <%= link_to "Edit", edit_document_path(@document), class: "btn btn-primary", data: {controller: 'document-modal'}  %>
             <%= link_to "Delete", document_path(@document), class: "btn btn-secondary", data: {
                         turbo_method: :delete,
@@ -62,8 +64,8 @@
         <% @routes.each do |route| %>
           <li class="list-group-item list-group-item-action">
             <div class="d-flex w-100 justify-content-between">
-              <p class="mb-1">from <%= route.document.user == current_user ? "you" : route.document.user.username %> to 
-              <%= route.receiving_user == current_user ? "you" : route.receiving_user.username %></p>
+              <p class="mb-1">from <%= route.origin_user == current_user ? "you" : route.origin_user.username %> to 
+              <%= route.destination_user == current_user ? "you" : route.destination_user.username %></p>
               <small><%= route.created_at.to_fs(:short) %></small>
             </div>    
           </li>

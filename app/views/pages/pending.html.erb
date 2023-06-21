@@ -5,7 +5,7 @@
       <div class="trackContainer">
         <div class="list-group p-1">
           <% Array(@routes).each do |route| %>
-              <% if logged_in? && route.receiving_user == current_user %>
+              <% if logged_in? && route.destination_user == current_user %>
                   <%= render 'routes/document_route', route: route %>
               <% end %>
           <% end %>

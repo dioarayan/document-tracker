@@ -9,7 +9,7 @@
                         <%= r.text_field :name, disabled: true %>
                         <%= r.text_area :description, disabled: true %>
                         <% if @route.action_id != 1 %>
-                            <%= f.select :receiving_user_id, User.all.collect{ |u| [u.username, u.id]}, {prompt: "Choose receiving user"} %>
+                            <%= f.select :destination_user_id, User.all.collect{ |u| [u.username, u.id]}, {prompt: "Choose receiving user"} %>
                         <% end %>
                     <%= f.primary %>
                     <% end %>

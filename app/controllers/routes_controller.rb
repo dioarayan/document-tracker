@@ -17,9 +17,10 @@ class RoutesController < ApplicationController
     
     def create
         @route = Route.new(route_params)
+        @route.origin_user = current_user
         respond_to do |format|  
             if @route.save
-                format.html{ redirect_to @document, notice: "You have successfully routed a document" }
+                format.html{ redirect_to documents_path, notice: "You have successfully routed a document" }
             else
                 format.turbo_stream { render turbo_stream: turbo_stream.replace(
                 'remote_modal', partial: 'routes/form_modal', locals: {route: @route})}
@@ -35,7 +36,7 @@ class RoutesController < ApplicationController
     def update
         @route = Route.find(params[:id])
         if @route.update(route_params)
-            redirect_to request.path, notice: "You have successfully edit a document!"
+            redirect_to processing_path, notice: "You just accepted a document!"
         else
             redirect_to request.path, status: :unprocessable_entity, notice: "Error accepting document!"
         end
@@ -53,7 +54,7 @@ class RoutesController < ApplicationController
     private
 
     def route_params
-        params.require(:route).permit(:document_id, :receiving_user_id, :remarks, :status_id)
+        params.require(:route).permit(:document_id, :destination_user_id, :remarks, :status_id)
     end
 
     def set_document

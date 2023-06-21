@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_16_062824) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_20_075009) do
   create_table "actions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -49,10 +49,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_16_062824) do
     t.string "remarks"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "receiving_user_id"
+    t.integer "destination_user_id"
     t.integer "status_id", default: 1
+    t.integer "origin_user_id"
+    t.index ["destination_user_id"], name: "index_routes_on_destination_user_id"
     t.index ["document_id"], name: "index_routes_on_document_id"
-    t.index ["receiving_user_id"], name: "index_routes_on_receiving_user_id"
     t.index ["status_id"], name: "index_routes_on_status_id"
   end
 
@@ -81,5 +82,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_16_062824) do
   end
 
   add_foreign_key "documents", "statuses"
-  add_foreign_key "routes", "users", column: "receiving_user_id"
+  add_foreign_key "routes", "users", column: "destination_user_id"
 end

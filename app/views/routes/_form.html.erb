@@ -2,7 +2,7 @@
 
     <%= bootstrap_form_with(model: [@document, @route]) do |f| %>
         <%= f.hidden_field :document_id, value: @document.id %>
-        <%= f.select :receiving_user_id, User.all.collect{ |u| [u.username, u.id]}, {prompt: "Forward to"} %>
+        <%= f.select :destination_user_id, User.all.collect{ |u| [u.username, u.id]}, {prompt: "Forward to"} %>
         <%= f.text_area :remarks %>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
