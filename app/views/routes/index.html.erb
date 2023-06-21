@@ -4,7 +4,7 @@
             <h3>To be received</h3>
              <div class="trackContainer">
                 <% @routes.each do |route| %>
-                    <% if logged_in? && (route.receiving_user == current_user || current_user.admin?) %>
+                    <% if logged_in? && (route.destination_user_id == current_user || current_user.admin?) %>
                     <% if route.action_id == 1 %>
                         <div class="list-group p-1">
                             <a href="routes/<%= route.id %>" class="list-group-item list-group-item-action" aria-current="true">
@@ -25,7 +25,7 @@
             <h3>Just received</h3>
             <div class="trackContainer">
                  <% @routes.each do |route| %>
-                    <% if logged_in? && (route.receiving_user == current_user || current_user.admin?) %>
+                    <% if logged_in? && (route.destination_user_id == current_user || current_user.admin?) %>
                     <% if route.action_id == 3 %>
                         <div class="list-group p-1">
                             <a href="routes/<%= route.id %>" class="list-group-item list-group-item-action" aria-current="true">
@@ -46,7 +46,7 @@
             <h3> Released </h3>
             <div class="trackContainer">
                  <% @routes.each do |route| %>
-                    <% if logged_in? && (route.receiving_user == current_user || current_user.admin?) %>
+                    <% if logged_in? && (route.destination_user_id == current_user || current_user.admin?) %>
                     <% if route.action_id == 4 %>
                         <div class="list-group p-1">
                             <a href="routes/<%= route.id %>" class="list-group-item list-group-item-action" aria-current="true">
@@ -67,7 +67,7 @@
             <h3> Forwarded </h3>
              <div class="trackContainer">
                <% @routes.each do |route| %>
-                    <% if logged_in? && (route.receiving_user == current_user || current_user.admin?) %>
+                    <% if logged_in? && (route.destination_user_id == current_user || current_user.admin?) %>
                     <% if route.action_id == 2 %>
                         <div class="list-group p-1">
                             <a href="routes/<%= route.id %>" class="list-group-item list-group-item-action" aria-current="true">

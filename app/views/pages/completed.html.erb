@@ -4,7 +4,7 @@
     <div class="trackContainer">
        <div class="list-group p-1">
            <% Array(@routes).each do |route| %>
-              <% if logged_in? && route.receiving_user == current_user %>
+              <% if logged_in? && route.destination_user_id == current_user %>
                 <%= turbo_frame_tag "document_#{route.document.id}" do %>
                     <%= render 'documents/document', document: route.document %>
                 <% end %>

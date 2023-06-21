@@ -22,8 +22,4 @@ class ApplicationController < ActionController::Base
         end
     end
 
-    def current_doc
-        @_current_doc ||= Document.find(params[:document_id]) if params[:document_id]
-    end
-
 end
