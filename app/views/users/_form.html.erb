@@ -1,4 +1,4 @@
-     <%= bootstrap_form_with(model: @user, local: true) do |f| %>
+     <%= bootstrap_form_with(model: @user, local: true, class: "signup-form") do |f| %>
         <%= f.text_field :username %>
         <%= f.email_field :email %>
         <%= f.password_field :password %>

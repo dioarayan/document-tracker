@@ -16,6 +16,5 @@ describe "#Showing Profile" do
         .and have_link("Delete your profile")
     end
   end
-
    
 end
