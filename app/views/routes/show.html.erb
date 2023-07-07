@@ -74,8 +74,9 @@
         <% @routes.each do |route| %>
           <li class="list-group-item list-group-item-action">
             <div class="d-flex w-100 justify-content-between">
-              <p class="mb-1">from <%= route.origin_user == current_user ? "you" : route.origin_user.username %> to 
-              <%= route.destination_user == current_user ? "you" : route.destination_user.username %></p>
+              <p class="mb-1">
+                to <%= route.destination_user == current_user ? "you" : route.destination_user.username %>
+              </p>
               <small><%= route.created_at.to_fs(:short) %></small>
             </div>    
           </li>
