@@ -17,7 +17,6 @@ class RoutesController < ApplicationController
     
     def create
         @route = Route.new(route_params)
-        @route.origin_user = current_user
         respond_to do |format|  
             if @route.save
                 format.html{ redirect_to documents_path, notice: "You have successfully routed a document" }

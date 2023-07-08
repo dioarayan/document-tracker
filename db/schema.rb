@@ -81,5 +81,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_30_021842) do
   end
 
   add_foreign_key "documents", "statuses"
-  add_foreign_key "routes", "users", column: "destination_user_id"
 end

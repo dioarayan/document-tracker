@@ -1,7 +1,7 @@
 <div class="row d-flex flex-lg-row flex-sm-column flex-xs-column">
   <div class="col-7 p-5 d-flex flex-column" style="height: 600px">
     <div class="document_list">
-      <h3 class="mb-3">Document Information: </h3>
+      <h3 class="mb-3">Document nformation: </h3>
       <div class="row mb-1">
         <div class="col-lg-3 col-sm-12">
           <p><strong>Title: </strong></p>
@@ -64,8 +64,9 @@
         <% @routes.each do |route| %>
           <li class="list-group-item list-group-item-action">
             <div class="d-flex w-100 justify-content-between">
-              <p class="mb-1">from <%= route.origin_user == current_user ? "you" : route.origin_user.username %> to 
-              <%= route.destination_user == current_user ? "you" : route.destination_user.username %></p>
+              <p class="mb-1"> 
+                to <%= route.destination_user == current_user ? "you" : route.destination_user.username %>
+              </p>
               <small><%= route.created_at.to_fs(:short) %></small>
             </div>    
           </li>

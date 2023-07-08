@@ -1,7 +1,6 @@
 class Route < ApplicationRecord
 	belongs_to :document
 	belongs_to :destination_user, class_name: "User"
-	belongs_to :origin_user, class_name: "User"
 	accepts_nested_attributes_for :document
 	validates :remarks, presence: false, length: { maximum: 100}
 	class Status
@@ -10,4 +9,10 @@ class Route < ApplicationRecord
 		Accepted = 3
 		Completed = 4
 	end    
+
+	def has_route?
+		if Route.count > 0
+		end
+	end
+
 end
