@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get "/about", to:"pages#about"
   get "/dashboard", to:"pages#dashboard"
   get "/signup", to:"users#new"
+  post "/signup", to:"users#create"
   get 'login', to: 'sessions#new'
   resources :users, except: [:new]
   post 'login', to: 'sessions#create'
