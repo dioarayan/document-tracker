@@ -10,9 +10,4 @@ class Route < ApplicationRecord
 		Completed = 4
 	end    
 
-	def has_route?
-		if Route.count > 0
-		end
-	end
-
 end
