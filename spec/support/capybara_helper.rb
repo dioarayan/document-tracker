@@ -1,3 +1,5 @@
+require "byebug"
+
 module CapybaraHelper
   def login(user)
     visit root_path
@@ -13,33 +15,11 @@ module CapybaraHelper
       .and have_content("#{user.username}")
   end
 
-  def edit(user)
-    visit user_path
-
-    click_button "Edit"
-
-  end
-
   def logout(user)
       visit root_path
 
       click_button "Log Out"
       expect(page).to have_content("You are logged out")
-  end
-
-  def signup(user)
-    visit root_path
-
-    click_on "Sign Up"
-    within ".user-form" do
-      fill_in "Username", with: user.username
-      fill_in "Email", with: user.email
-      fill_in "Password", with: "averysecurepassword"
-      click_on "Create User"
-    end
-
-    expect(page).to have_content("Welcome to Document Tracker, test! You have successfully signed in.")
-      .and have_content("#{user.username}")
   end
 
   def view_my_documents()

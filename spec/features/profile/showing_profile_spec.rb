@@ -17,18 +17,13 @@ describe "#Showing Profile" do
     end
   end
 
-  before do
-    edit(user1)
-  end
-
-
-  context "when successful edit" do
-    it "redirects to profile page after successful edit" do
-      expect(page).to have_content("Showing User Profile")
-      .and have_content(user1.username)
-      .and have_content(user1.email)
-      .and have_link("Edit")
-      .and have_link("Delete your profile")
+  context "when edit button clicked" do
+    it "renders edit form" do
+      click_on "Edit"
+      expect(page).to have_content("Edit user")
+      .and have_field('Username', with: user1.username)
+      .and have_field('Email', with: user1.email)
+      .and have_button("Update User")
     end
   end
 
