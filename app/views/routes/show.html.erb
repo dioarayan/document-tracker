@@ -31,7 +31,7 @@
           <p><strong>Status: </strong></p>
         </div>
         <div class="col-lg-9 col-sm-12">
-          <p> <%= @route.document.status.statusName   %> </p>
+          <p> <%= @route.status_id   %> </p>
         </div>
       </div>
       <div class="row mb-1">
@@ -47,7 +47,7 @@
           <% if @route.status_id == 1 %>
             <%= form_tag(document_route_path(@document, @route), method: :patch, remote: true) do %>
               <%= hidden_field_tag :_method, :patch %>
-              <%= hidden_field_tag "route[status_id]", Route::Status::Accepted %>
+              <%= hidden_field_tag "route[status_id]", Route::Status::Received %>
               <div class="col-12">
                 <input type="submit" value="Accept" class="btn btn-primary">
               </div>

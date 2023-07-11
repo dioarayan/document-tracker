@@ -4,10 +4,10 @@ class Route < ApplicationRecord
 	accepts_nested_attributes_for :document
 	validates :remarks, presence: false, length: { maximum: 100}
 	class Status
-		Pending = 1
-		Forwarded = 2
-		Accepted = 3
-		Completed = 4
+		Forwarded = 1
+		Received = 2
+		Released = 3
+		Declined = 4
 	end    
 
-end
+end 
