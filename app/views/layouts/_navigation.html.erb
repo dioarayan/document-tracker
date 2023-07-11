@@ -35,7 +35,7 @@
                 <%= link_to "View Profile", user_path(current_user), class: "dropdown-item" %>
               </li>
               <li>
-                 <%= link_to "Log Out", logout_path, class: "dropdown-item", data: {turbo_method: :delete} %>
+                 <%= link_to "Log Out", logout_path, class: "dropdown-item log-out", data: {turbo_method: :delete} %>
               </li>
             </ul>
           </li>

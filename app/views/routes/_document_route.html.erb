@@ -5,6 +5,5 @@
             <small> <%= time_ago_in_words(route.document.created_at) %> ago</small>
         </div>
         <h6> <span class="badge bg-success"><%= route.document.category.name %></span></h6>
-        <small><i>forwarded from</i><b> <%= route.origin_user.username %></b></small>
     <% end %>
 </div>

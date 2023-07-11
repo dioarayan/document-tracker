@@ -8,7 +8,7 @@
                     <% end %>
                 </li>
                 <li class="nav-item">
-                    <%= link_to documents_path, class: "nav-link align-middle px-0" do %>
+                    <%= link_to documents_path, class: "nav-link align-middle px-0 my-logs" do %>
                         <i class="fs-4 bi-file-text"></i> <span class="ms-1 d-none d-sm-inline">My logs</span>
                     <% end %>
                 </li>
@@ -28,9 +28,10 @@
                         </li>
                         <li class="ps-2 w-100">
                             <%= link_to completed_path, class: "nav-link px-0" do %>
-                                <i class="fs-4 bi-clipboard2-check"></i> <span class="ms-1 d-none d-sm-inline">Completed</span>
+                                <i class="fs-4 bi-recycle"></i> <span class="ms-1 d-none d-sm-inline">Completed</span>
                             <% end %>
                         </li>
+                       
                     </ul>
                 </li>
             </ul>

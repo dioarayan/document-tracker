@@ -9,11 +9,14 @@ class DocumentsController < ApplicationController
 
     def show
         @routes = @document.routes
-        @route = Route.new
     end
 
     def new
         @document = Document.new
+        respond_to do |format| 
+            format.turbo_stream { render turbo_stream: turbo_stream.replace(
+                'remote_modal', partial: 'documents/form_modal', locals: {document: @document})}
+        end
     end
 
     def create

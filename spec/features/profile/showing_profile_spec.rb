@@ -17,5 +17,16 @@ describe "#Showing Profile" do
     end
   end
 
-   
+  context "when edit button clicked" do
+    it "renders edit form" do
+      click_on "Edit"
+      expect(page).to have_content("Edit user")
+      .and have_field('Username', with: user1.username)
+      .and have_field('Email', with: user1.email)
+      .and have_button("Register")
+    end
+  end
+
 end
+
+
