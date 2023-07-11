@@ -23,7 +23,7 @@ describe "#Showing Profile" do
       expect(page).to have_content("Edit user")
       .and have_field('Username', with: user1.username)
       .and have_field('Email', with: user1.email)
-      .and have_button("Update User")
+      .and have_button("Register")
     end
   end
 
