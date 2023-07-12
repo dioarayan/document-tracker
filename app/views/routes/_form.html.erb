@@ -1,12 +1,13 @@
 <div class="modal-body">
 
-    <%= bootstrap_form_with(model: [@document, @route]) do |f| %>
-        <%= f.hidden_field :document_id, value: @document.id %>
-        <%= f.select :destination_user_id, User.all.collect{ |u| [u.username, u.id]}, {prompt: "Forward to"} %>
-        <%= f.text_area :remarks %>
+    <%= bootstrap_form_with(model: [@document, @route]) do |route_form| %>
+        <%= route_form.hidden_field :document_id, value: @document.id %>
+        <%= route_form.hidden_field :status_id, value: Route::Status::Forwarded %>
+        <%= route_form.select :destination_user_id, User.all.collect{ |u| [u.username, u.id]}, {prompt: "Forward to"} %>
+        <%= route_form.text_area :remarks %>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <%= f.submit "Send", class: "btn btn-primary", data: {action: "click->bs-modal#submitForm"} %> 
+        <%= route_form.submit "Send", class: "btn btn-primary", data: {action: "click->bs-modal#submitForm"} %> 
     </div>
     <% end %>
 </div>

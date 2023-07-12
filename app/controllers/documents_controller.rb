@@ -13,10 +13,6 @@ class DocumentsController < ApplicationController
 
     def new
         @document = Document.new
-        respond_to do |format| 
-            format.turbo_stream { render turbo_stream: turbo_stream.replace(
-                'remote_modal', partial: 'documents/form_modal', locals: {document: @document})}
-        end
     end
 
     def create
