@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_30_021842) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_11_110128) do
   create_table "actions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -40,7 +40,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_30_021842) do
     t.integer "section_id"
     t.index ["category_id"], name: "index_documents_on_category_id"
     t.index ["section_id"], name: "index_documents_on_section_id"
-    t.index ["status_id"], name: "index_documents_on_status_id"
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
@@ -53,7 +52,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_30_021842) do
     t.integer "destination_user_id"
     t.index ["destination_user_id"], name: "index_routes_on_destination_user_id"
     t.index ["document_id"], name: "index_routes_on_document_id"
-    t.index ["status_id"], name: "index_routes_on_status_id"
   end
 
   create_table "sections", force: :cascade do |t|
@@ -62,12 +60,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_30_021842) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["division_id"], name: "index_sections_on_division_id"
-  end
-
-  create_table "statuses", force: :cascade do |t|
-    t.string "statusName"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -80,5 +72,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_30_021842) do
     t.integer "sections_id"
   end
 
-  add_foreign_key "documents", "statuses"
 end
