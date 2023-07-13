@@ -1,6 +1,5 @@
 <div class="modal-body">
-
-    <%= bootstrap_form_with(model: [@document, @route]) do |f| %>
+    <%= form_for(:route, url: document_forward_document_path(), method: :post, remote: :true) do |f| %>
         <%= f.hidden_field :document_id, value: @document.id %>
         <%= f.select :destination_user_id, User.all.collect{ |u| [u.username, u.id]}, {prompt: "Forward to"} %>
         <%= f.text_area :remarks %>

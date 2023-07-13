@@ -43,19 +43,19 @@ Category.create!([
     },
 ])
 
-Status.destroy_all
+# Status.destroy_all
 
-Status.create!([
-    {
-        statusName: "pending"
-    },
-    {
-        statusName: "processing"
-    },
-    {
-        statusName: "completed"
-    }
-])
+# Status.create!([
+#     {
+#         statusName: "pending"
+#     },
+#     {
+#         statusName: "processing"
+#     },
+#     {
+#         statusName: "completed"
+#     }
+# ])
 
 Division.destroy_all
 
@@ -107,8 +107,8 @@ Section.create!([
 Document.destroy_all
 Route.destroy_all
 
+p "Created #{Division.count} Division"
 p "Created #{User.count} Users"
 p "Created #{Category.count} Category"
-p "Created #{Status.count} Status"
-p "Created #{Division.count} Division"
+# p "Created #{Status.count} Status"
 p "Created #{Section.count} Section"

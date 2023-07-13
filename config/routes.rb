@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   get 'completed', to: 'pages#completed'
   
   resources :documents do
-    resources :routes 
+    resources :routes
+    post :forward_document
   end
 
 # resources :routes do
