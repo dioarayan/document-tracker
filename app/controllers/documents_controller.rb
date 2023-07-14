@@ -13,10 +13,6 @@ class DocumentsController < ApplicationController
 
     def new
         @document = Document.new
-        respond_to do |format| 
-            format.turbo_stream { render turbo_stream: turbo_stream.replace(
-                'remote_modal', partial: 'documents/form_modal', locals: {document: @document})}
-        end
     end
 
     def create
@@ -72,6 +68,19 @@ class DocumentsController < ApplicationController
       redirect_to request.path, error: e.message
     end
 
+    def decline_document
+        @route = Route.new(decline_document_params)
+        @route.destination_user = current_user
+
+        respond_to do |format|
+            if @route.save
+                format.html{ redirect_to processing_path, notice: "You have declined a document" }
+            else
+                format.html{ redirect_to request_path, notice: "Error in declining a document" }
+            end
+        end
+    end
+
     private
     
     def set_documents
@@ -85,6 +94,10 @@ class DocumentsController < ApplicationController
     def foward_document_params
       params.require(:route).permit(:document_id, :destination_user_id, :remarks)
     end
+
+    def decline_document_params
+        params.require(:route).permit(:document_id, :status_id, :remarks)
+      end
 
     def require_same_user
         if current_user != @document.user && !current_user.admin?

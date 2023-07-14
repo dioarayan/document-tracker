@@ -31,7 +31,7 @@
           <p><strong>Status: </strong></p>
         </div>
         <div class="col-lg-9 col-sm-12">
-          <p> <%= @document.status_id %> </p>
+          <p> <%= Document.statuses.key(@document.status_id) %> </p>
         </div>
       </div>
       <div class="row mb-1">

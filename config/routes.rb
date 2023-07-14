@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :documents do
     resources :routes
     post :forward_document
+    post :decline_document
   end
 
 # resources :routes do
