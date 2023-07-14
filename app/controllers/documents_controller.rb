@@ -62,6 +62,16 @@ class DocumentsController < ApplicationController
         end
     end
 
+    def forward_document
+      Documents::Forwarder.call(destination: foward_document_params)
+      
+      respond_to do |format|
+        format.html{ redirect_to documents_path, notice: "You have successfully routed a document" }
+      end
+    rescue DocumentForwardingException => e
+      redirect_to request.path, error: e.message
+    end
+
     private
     
     def set_documents
@@ -70,6 +80,10 @@ class DocumentsController < ApplicationController
 
     def document_params
         params.require(:document).permit(:name, :description, :category_id, :status_id, :section_id)
+    end
+
+    def foward_document_params
+      params.require(:route).permit(:document_id, :destination_user_id, :remarks)
     end
 
     def require_same_user
