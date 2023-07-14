@@ -7,7 +7,7 @@
           <p><strong>Title: </strong></p>
         </div>
         <div class="col-lg-9 col-sm-12">
-          <p><%= @route.document.name %></p>
+          <p><%= @found_route.document.name %></p>
         </div>
       </div>
       <div class="row mb-1">
@@ -15,7 +15,7 @@
           <p><strong>Description: </strong></p>
         </div>
         <div class="col-lg-9 col-sm-12">
-          <p><%= @route.document.description %></p>
+          <p><%= @found_route.document.description %></p>
         </div>
       </div>
       <div class="row mb-1">
@@ -23,7 +23,7 @@
           <p><strong>Category: </strong></p>
         </div>
         <div class="col-lg-9 col-sm-12">
-          <p> <span class="badge bg-success"><%= @route.document.category.name %></span></p>
+          <p> <span class="badge bg-success"><%= @found_route.document.category.name %></span></p>
         </div>
       </div>
       <div class="row mb-1">
@@ -31,7 +31,7 @@
           <p><strong>Status: </strong></p>
         </div>
         <div class="col-lg-9 col-sm-12">
-          <p> <%= @route.status_id   %> </p>
+          <p> <%= Route.statuses.key(@found_route.status_id) %> </p>
         </div>
       </div>
       <div class="row mb-1">
@@ -39,24 +39,27 @@
           <p><strong>Origin: </strong></p>
         </div>
         <div class="col-lg-9 col-sm-12">
-          <p> <%= @route.document.section.name %> </p>
+          <p> <%= @found_route.document.section.name %> </p>
         </div>
       </div>
       <div class="row row-cols-lg-auto g-2 align-items-center mb-1">
-        <% if logged_in? && (@route.destination_user == current_user || current_user.admin?) %>
-          <% if @route.status_id == 1 %>
-            <%= form_tag(document_route_path(@document, @route), method: :patch, remote: true) do %>
+        <% if logged_in? && (@found_route.destination_user == current_user || current_user.admin?) %>
+          <% if @found_route.status_id == 1 %>
+            <%= form_tag(document_route_path(@document, @found_route), method: :patch, remote: true) do %>
               <%= hidden_field_tag :_method, :patch %>
-              <%= hidden_field_tag "route[status_id]", Route::Status::Received %>
+              <%= hidden_field_tag "route[status_id]", Route.statuses[:Received] %>
               <div class="col-12">
                 <input type="submit" value="Accept" class="btn btn-primary">
               </div>
             <% end %>
               <div class="col-12">
-                <%= link_to "Reject", document_route_path(@document, @route), method: :delete, class: "btn btn-secondary", data: {
-                            turbo_method: :delete,
-                            turbo_confirm: "Are you sure?"
-                          } %>
+                <%= form_for(:route, url: document_decline_document_path(@document), method: :post, remote: :true) do |f| %>
+                  <%= f.hidden_field :document_id, value: @document.id %>
+                  <%= f.hidden_field :status_id, value: Route.statuses[:Declined] %>
+                  <div class="col-12">
+                    <input type="submit" value="Decline" class="btn btn-secondary">
+                  </div>
+                <% end %>
               </div>
           <% end %>
               <div class="col-12">

@@ -13,7 +13,7 @@
       <div class="trackContainer" id="document_list">
           <div class="list-group p-1">
               <% @documents.each do |document| %>
-                  <% if document.user == current_user && document.status_id == Document::Status::Created  %>
+                  <% if document.user == current_user && document.status_id == Document.statuses[:Created]  %>
                       <%= render document %>
                   <% end %>
               <% end %>
@@ -25,7 +25,7 @@
       <div class="trackContainer" id="document_list">
           <div class="list-group p-1">
               <% @documents.each do |document| %>
-                  <% if document.user == current_user && document.status_id == Document::Status::Pending  %>
+                  <% if document.user == current_user && document.status_id == Document.statuses[:Pending]  %>
                       <%= render document %>
                   <% end %>
               <% end %>
@@ -37,7 +37,7 @@
       <div class="trackContainer">
           <div class="list-group p-1">
               <% @documents.each do |document| %>
-                  <% if document.user == current_user && document.status_id == Document::Status::Processing %>
+                  <% if document.user == current_user && document.status_id == Document.statuses[:Processing] %>
                       <%= render document %>
                   <% end %>
               <% end %>
@@ -49,7 +49,7 @@
       <div class="trackContainer">
           <div class="list-group p-1">
               <% @documents.each do |document| %>
-                  <% if document.user == current_user && document.status_id == Document::Status::Completed %>
+                  <% if document.user == current_user && document.status_id == Document.statuses[:Completed] %>
                       <%= render document %>
                   <% end %>
               <% end %>

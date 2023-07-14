@@ -7,7 +7,8 @@ class RoutesController < ApplicationController
     end
 
     def show
-        @route = Route.find(params[:id])
+        @route = Route.new
+        @found_route = Route.find(params[:id])
         @routes = @document.routes
     end
     
@@ -17,6 +18,7 @@ class RoutesController < ApplicationController
     
     def create
         @route = Route.new(route_params)
+        debugger
         respond_to do |format|  
             if @route.save
                 format.html{ redirect_to documents_path, notice: "You have successfully routed a document" }

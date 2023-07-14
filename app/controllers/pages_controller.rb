@@ -12,15 +12,15 @@ class PagesController < ApplicationController
     end
 
     def pending
-        @routes = Route.where(status_id: Route::Status::Forwarded)
+        @routes = Route.where(status_id: Route.statuses[:Forwarded])
     end
 
     def processing
-        @routes = Route.where(status_id: Route::Status::Received)
+        @routes = Route.where(status_id: Route.statuses[:Received])
     end
 
     def completed
-        @routes = Route.where(status_id: Route::Status::Released)
+        @routes = Route.where(status_id: Route.statuses[:Released])
     end
 
 end
