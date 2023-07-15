@@ -59,26 +59,23 @@ class DocumentsController < ApplicationController
     end
 
     def forward_document
-      Documents::Forwarder.call(destination: foward_document_params)
+      Documents::RouteHandler.call(destination: foward_document_params)
       
       respond_to do |format|
         format.html{ redirect_to documents_path, notice: "You have successfully routed a document" }
       end
-    rescue DocumentForwardingException => e
-      redirect_to request.path, error: e.message
+        rescue DocumentForwardingException => e
+        redirect_to request.path, error: e.forward_error_message
     end
 
     def decline_document
-        @route = Route.new(decline_document_params)
-        @route.destination_user = current_user
+        Documents::RouteHandler.call(destination: decline_document_params)
 
         respond_to do |format|
-            if @route.save
-                format.html{ redirect_to processing_path, notice: "You have declined a document" }
-            else
-                format.html{ redirect_to request_path, notice: "Error in declining a document" }
-            end
+            format.html{ redirect_to processing_path, notice: "You have declined a document" }
         end
+        rescue DocumentForwardingException => e
+            redirect_to request.path, error: e.decline_error_message
     end
 
     private
@@ -96,7 +93,7 @@ class DocumentsController < ApplicationController
     end
 
     def decline_document_params
-        params.require(:route).permit(:document_id, :status_id, :remarks)
+        params.require(:route).permit(:document_id, :destination_user_id, :status_id, :remarks)
       end
 
     def require_same_user

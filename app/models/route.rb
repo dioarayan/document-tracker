@@ -7,14 +7,7 @@ class Route < ApplicationRecord
 		Received: 2,
 		Released: 3,
 		Declined: 4
-	}
-	
-	# class Status
-	# 	Forwarded = 1
-	# 	Received = 2
-	# 	Released = 3
-	# 	Declined = 4
-	# end    
+	}   
 
 	after_create :set_document_to_pending
 	after_update :set_document_to_processing
@@ -28,3 +21,4 @@ class Route < ApplicationRecord
 	end
 
 end 
+
