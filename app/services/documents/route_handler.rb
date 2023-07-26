@@ -1,4 +1,4 @@
-class Documents::Forwarder
+class Documents::RouteHandler
   include Serviceable
 
   def initialize(destination:)
@@ -6,14 +6,14 @@ class Documents::Forwarder
   end
 
   def call
-    foward_document
+    handle_document_route
   end
 
   private
 
   attr_reader :destination
 
-  def foward_document
+  def handle_document_route
     return new_route if new_route.errors.blank?
 
     raise DocumentForwardingException
