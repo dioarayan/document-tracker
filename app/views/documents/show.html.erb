@@ -26,12 +26,20 @@
           <p> <span class="badge bg-success"><%= @document.category.name %></span></p>
         </div>
       </div>
+       <div class="row mb-1">
+        <div class="col-lg-3 col-sm-12">
+          <p><strong>State: </strong></p>
+        </div>
+        <div class="col-lg-9 col-sm-12">
+          <p> <%= @document.routes.last.state if @document.routes.any? %> </p>
+        </div>
+      </div>
       <div class="row mb-1">
         <div class="col-lg-3 col-sm-12">
           <p><strong>Status: </strong></p>
         </div>
         <div class="col-lg-9 col-sm-12">
-          <p> <%= Document.statuses.key(@document.status_id) %> </p>
+          <p> <%= @document.status %> </p>
         </div>
       </div>
       <div class="row mb-1">
@@ -45,7 +53,7 @@
       <div class="row mb-1">
         <% if logged_in? && (@document.user == current_user || current_user.admin?) %>
           <div class="d-grid gap-2 d-md-block">
-            <% if !@document.routes.any? && @document.status_id == 1   %>
+            <% if !@document.routes.any? && @document.created?   %>
               <%= link_to "Forward to", new_document_route_path(@document), class: "btn btn-success", data: {controller: 'document-modal'} %>
             <% end %>
             <%= link_to "Edit", edit_document_path(@document), class: "btn btn-primary", data: {controller: 'document-modal'}  %>

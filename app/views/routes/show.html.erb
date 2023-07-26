@@ -28,10 +28,18 @@
       </div>
       <div class="row mb-1">
         <div class="col-lg-3 col-sm-12">
+          <p><strong>State: </strong></p>
+        </div>
+        <div class="col-lg-9 col-sm-12">
+          <p> <%= @found_route.state %> </p>
+        </div>
+      </div>
+      <div class="row mb-1">
+        <div class="col-lg-3 col-sm-12">
           <p><strong>Status: </strong></p>
         </div>
         <div class="col-lg-9 col-sm-12">
-          <p> <%= Route.statuses.key(@found_route.status_id) %> </p>
+          <p> <%= @found_route.document.status %> </p>
         </div>
       </div>
       <div class="row mb-1">
@@ -44,10 +52,10 @@
       </div>
       <div class="row row-cols-lg-auto g-2 align-items-center mb-1">
         <% if logged_in? && (@found_route.destination_user == current_user || current_user.admin?) %>
-          <% if @found_route.status_id == 1 %>
+          <% if @found_route.forwarded? %>
             <%= form_tag(document_route_path(@document, @found_route), method: :patch, remote: true) do %>
               <%= hidden_field_tag :_method, :patch %>
-              <%= hidden_field_tag "route[status_id]", Route.statuses[:Received] %>
+              <%= hidden_field_tag "route[state]", "received" %>
               <div class="col-12">
                 <input type="submit" value="Accept" class="btn btn-primary">
               </div>
@@ -55,16 +63,16 @@
               <div class="col-12">
                 <%= form_for(:route, url: document_decline_document_path(@document), method: :post, remote: :true) do |f| %>
                   <%= f.hidden_field :document_id, value: @document.id %>
-                  <%= f.hidden_field :status_id, value: Route.statuses[:Declined] %>
-                  <%= f.hidden_field :destination_user_id, value: @document.routes.second_to_last.destination_user_id %>
+                  <%= f.hidden_field :status, value: Route.states[:declined] %>
+                  <%= f.hidden_field :destination_user_id, value:  @document.routes.count > 1  ? @document.routes.second_to_last.destination_user_id : @document.user_id  %>
                   <div class="col-12">
-                    <input type="submit" value="Decline" class="btn btn-secondary">
+                    <%= f.submit "Decline", class: "btn btn-secondary", data: { confirm: "Decline #{@document.name}?"} %>
                   </div>
                 <% end %>
               </div>
           <% end %>
               <div class="col-12">
-                <% if @document.routes.last.status_id != 1 %>
+                <% if @document.routes.last.received? %>
                   <%= link_to "Forward to", new_document_route_path(@document), class: "btn btn-success", data: {controller: 'document-modal'} %>
                 <% end %>
               </div>

@@ -85,7 +85,7 @@ class DocumentsController < ApplicationController
     end
 
     def document_params
-        params.require(:document).permit(:name, :description, :category_id, :status_id, :section_id)
+        params.require(:document).permit(:name, :description, :category_id, :status, :section_id)
     end
 
     def foward_document_params
@@ -93,7 +93,7 @@ class DocumentsController < ApplicationController
     end
 
     def decline_document_params
-        params.require(:route).permit(:document_id, :destination_user_id, :status_id, :remarks)
+        params.require(:route).permit(:document_id, :destination_user_id, :remarks)
       end
 
     def require_same_user

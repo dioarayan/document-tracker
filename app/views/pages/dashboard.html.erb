@@ -5,7 +5,7 @@
             <div class="trackContainer">
                 <div class="list-group p-1">
                     <% @documents.each do |document| %>
-                        <% if document.status_id == 1 %>
+                        <% if document.pending? %>
                             <%= render 'documents/document', document: document %>
                         <% end %>
                     <% end %>
@@ -17,7 +17,7 @@
             <div class="trackContainer">
                 <div class="list-group p-1">
                     <% @documents.each do |document| %>
-                        <% if document.status_id == 2 %>
+                        <% if document.processing? %>
                             <%= render 'documents/document', document: document %>
                         <% end %>
                     <% end %>
@@ -29,7 +29,7 @@
             <div class="trackContainer">
                  <div class="list-group p-1">
                     <% @documents.each do |document| %>
-                        <% if document.status_id == 3 %>
+                        <% if document.completed? %>
                             <%= render 'documents/document', document: document %>
                         <% end %>
                     <% end %>

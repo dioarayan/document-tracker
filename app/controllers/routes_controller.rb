@@ -36,6 +36,10 @@ class RoutesController < ApplicationController
 
     def update
         @route = Route.find(params[:id])
+        #if params[:state].present?
+        #    @route.update(state: params[:state])
+        #end
+        #redirect_to @route, notice: "You successfully accepted a document!"
         if @route.update(route_params)
             redirect_to processing_path, notice: "You just accepted a document!"
         else
@@ -55,7 +59,7 @@ class RoutesController < ApplicationController
     private
 
     def route_params
-        params.require(:route).permit(:document_id, :destination_user_id, :remarks, :status_id)
+        params.require(:route).permit(:document_id, :destination_user_id, :remarks, :state)
     end
 
     def set_document
