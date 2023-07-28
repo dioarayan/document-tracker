@@ -2,7 +2,7 @@
     <%= link_to document_route_path(route.document, route), class: "list-group-item list-group-item-action", role: "button" do %>
         <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1"><%= route.document.name %></h5>
-            <small> <%= time_ago_in_words(route.created_at) %> ago</small>
+            <small> <%= time_ago_in_words(route.updated_at) %> ago</small>
         </div>
         <h6> <span class="badge bg-success"><%= route.document.category.name %></span></h6>
     <% end %>

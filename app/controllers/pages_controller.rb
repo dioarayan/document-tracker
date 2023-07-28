@@ -8,19 +8,19 @@ class PagesController < ApplicationController
     end
 
     def dashboard
-        @documents = Document.all
+        @documents = Document.order(id: :desc)
     end
 
     def pending
-        @routes = Route.forwarded 
+        @routes = Route.forwarded.order(id: :desc) 
     end
 
     def processing
-        @routes = Route.received 
+        @routes = Route.received.order(id: :desc)  
     end
 
     def completed
-        @routes = Route.released
+        @routes = Route.released.order(id: :desc) 
     end
 
 end

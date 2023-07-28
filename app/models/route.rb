@@ -10,14 +10,14 @@ class Route < ApplicationRecord
 	}   
 
 	after_create :set_document_to_pending
-	#after_update :set_document_to_processing
+	after_update :set_document_to_processing
 
 	def set_document_to_pending
-		Document.update(status: :pending)
+		document.update(status: :pending)
 	end
 
 	def set_document_to_processing
-		Document.update(status: :processing)
+		document.update(status: :processing)
 	end
 
 end 

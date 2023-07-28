@@ -4,7 +4,7 @@ class DocumentsController < ApplicationController
     before_action :require_same_user, only: [:destroy]
 
     def index
-        @documents = Document.all
+        @documents = Document.order(id: :desc)
     end
 
     def show
