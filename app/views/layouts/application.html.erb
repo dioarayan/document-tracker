@@ -18,12 +18,19 @@
   <main>
   <%= turbo_frame_tag 'remote_modal'  %>
     <div class="container-fluid p-0">
-      <div class="row">
-          <%= render 'layouts/sidebar' %>
-          <div class="col-auto col-md-9 col-xl-10">
-            <%= yield %>
-          </div>
-      </div>
+        <%= yield :home %>
+        <% if action_name == "new" && controller_name == "sessions" %>
+          <%= yield :login_page %>
+        <% elsif action_name == "new" && controller_name == "users" %>
+          <%= yield :signup_page %>
+        <% else %>
+        <div class="row">
+            <%= render 'layouts/sidebar' unless action_name == "home" %>
+            <div class="col-auto col-md-9 col-xl-10">
+              <%= yield %>
+            </div>
+        </div>
+        <% end %>
     </div>
   </main>
   </body>

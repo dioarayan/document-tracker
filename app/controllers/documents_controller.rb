@@ -33,7 +33,6 @@ class DocumentsController < ApplicationController
     end
 
     def update
-        debugger
         respond_to do |format|
             if @document.update(document_params)
                 format.html { redirect_to @document, notice: "You have successfully edit a document!" }
