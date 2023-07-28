@@ -3,7 +3,7 @@ class RoutesController < ApplicationController
     before_action :set_document, only: [:new, :create, :show, :edit]
 
     def index
-        @routes = Route.all
+        @routes = Route.order(id: :desc)
     end
 
     def show
