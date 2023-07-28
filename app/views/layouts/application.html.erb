@@ -12,7 +12,6 @@
   </head>
 
   <body>
-  <%= render 'layouts/messages' %>
   <%= render 'layouts/navigation' %>
 
   <main>
@@ -27,6 +26,7 @@
         <div class="row">
             <%= render 'layouts/sidebar' unless action_name == "home" %>
             <div class="col-auto col-md-9 col-xl-10">
+              <%= render 'layouts/messages' %>  
               <%= yield %>
             </div>
         </div>
