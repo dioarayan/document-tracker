@@ -1,18 +1,17 @@
-
-<div class="container">
-  <div class="mt-5">
-  <h1 class="text-center">Log in</h1>
-    <div class="row justify-content-center" >
-      <div class="col-md-6 col-sm-8 col-xs-10">
-          <%= bootstrap_form_with(scope: :session, url: login_path, local: true, class: "login-form") do |f| %>
-              <%= f.email_field :email %>
-              <%= f.password_field :password %>
-              <%= f.submit "Log In", class: "btn btn-primary mt-3" %>
-          
-          <% end %>
-
+<%= content_for :login_page do %>
+  <div class="container">
+    <div class="mt-5">
+    <h1 class="text-center">Log in</h1>
+      <div class="row justify-content-center" >
+        <div class="col-md-6 col-sm-8 col-xs-10">
+            <%= bootstrap_form_with(scope: :session, url: login_path, local: true, class: "login-form") do |f| %>
+                <%= f.email_field :email %>
+                <%= f.password_field :password %>
+                <%= f.submit "Log In", class: "btn btn-primary mt-3" %>
+            
+            <% end %>
+        </div>
       </div>
     </div>
   </div>
-  
-</div>
+<% end %>
