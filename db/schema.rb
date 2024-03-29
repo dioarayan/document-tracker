@@ -11,25 +11,25 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_07_15_180824) do
-  create_table "actions", force: :cascade do |t|
+  create_table "actions", charset: "utf8mb3", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "actionName"
   end
 
-  create_table "categories", force: :cascade do |t|
+  create_table "categories", charset: "utf8mb3", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "divisions", force: :cascade do |t|
+  create_table "divisions", charset: "utf8mb3", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "documents", force: :cascade do |t|
+  create_table "documents", charset: "utf8mb3", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.datetime "created_at", null: false
@@ -43,7 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_15_180824) do
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
-  create_table "routes", force: :cascade do |t|
+  create_table "routes", charset: "utf8mb3", force: :cascade do |t|
     t.integer "document_id"
     t.string "remarks"
     t.datetime "created_at", null: false
@@ -54,7 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_15_180824) do
     t.index ["document_id"], name: "index_routes_on_document_id"
   end
 
-  create_table "sections", force: :cascade do |t|
+  create_table "sections", charset: "utf8mb3", force: :cascade do |t|
     t.integer "division_id"
     t.string "name"
     t.datetime "created_at", null: false
@@ -62,7 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_15_180824) do
     t.index ["division_id"], name: "index_sections_on_division_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", charset: "utf8mb3", force: :cascade do |t|
     t.string "username"
     t.string "email"
     t.datetime "created_at", null: false

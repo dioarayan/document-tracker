@@ -1,4 +1,4 @@
-version: '3.4'
+version: '3.7'
 
 services:
   app: 
@@ -11,10 +11,21 @@ services:
     env_file: .env
     command: bundle exec rails server -b 0.0.0.0 -p 3000
     shm_size: 1gb
+    depends_on:
+      - db
     ports: 
-      - "3000:3000"
+      - "3001:3000"
     tty: true
     stdin_open: true
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    volumes:
+    - db:/var/lib/mysql
 
 volumes:
   gem_cache:
+  db:
+    driver: local
