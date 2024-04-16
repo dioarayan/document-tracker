@@ -1,8 +1,9 @@
-name: CI
+name: rspec-features
 
 on:
-  pull_request:
-    branches: [main]
+  push:
+    branches:
+      - main
 
 env:
   RAILS_ENV: test
@@ -10,6 +11,16 @@ env:
 jobs:
   rspec-unit-feature-tests:
     runs-on: self-hosted
+
+    services:
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_ROOT_PASSWORD: example
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
 
     steps:
       - name: Checkout Repository
@@ -27,7 +38,7 @@ jobs:
 
       - name: Set up Database
         run: |
-          cp config/database.yml.sample config/database.yml && 
+          cp config/database.yml.sample config/database.yml &&
           cp docker-compose.yml.sample docker-compose.yml &&
           cp .env.ci .env
           bundle exec rails db:create

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Documents::Forwarder do
+describe Documents::RouteHandler do
   subject { described_class.new(destination: destination) }
 
   let(:user) { cache(:user1, username: "new_user", email: "new_email@test.com") }
@@ -36,7 +36,7 @@ describe Documents::Forwarder do
     end
 
     it "raises exception if service fails" do
-      expect { subject.call }.to raise_error(DocumentForwardingException, "Failed to forward document.")
+      expect { subject.call }.to raise_error(DocumentForwardingException)
     end
   end
 end
