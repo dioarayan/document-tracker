@@ -10,13 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_15_180824) do
-  create_table "actions", charset: "utf8mb3", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "actionName"
-  end
-
+ActiveRecord::Schema[7.0].define(version: 2024_04_16_132258) do
   create_table "categories", charset: "utf8mb3", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -36,26 +30,28 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_15_180824) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "category_id"
-    t.integer "status", default: 0
-    t.integer "section_id"
+    t.bigint "status", default: 0
+    t.bigint "section_id"
     t.index ["category_id"], name: "index_documents_on_category_id"
     t.index ["section_id"], name: "index_documents_on_section_id"
+    t.index ["status"], name: "index_documents_on_status"
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
   create_table "routes", charset: "utf8mb3", force: :cascade do |t|
-    t.integer "document_id"
+    t.bigint "document_id"
     t.string "remarks"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "state", default: 0
-    t.integer "destination_user_id"
+    t.bigint "state", default: 0
+    t.bigint "destination_user_id"
     t.index ["destination_user_id"], name: "index_routes_on_destination_user_id"
     t.index ["document_id"], name: "index_routes_on_document_id"
+    t.index ["state"], name: "index_routes_on_state"
   end
 
   create_table "sections", charset: "utf8mb3", force: :cascade do |t|
-    t.integer "division_id"
+    t.bigint "division_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -69,7 +65,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_15_180824) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.boolean "admin", default: false
-    t.integer "sections_id"
+    t.bigint "sections_id"
   end
 
+  add_foreign_key "routes", "users", column: "destination_user_id"
 end
