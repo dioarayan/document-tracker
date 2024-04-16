@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.9'
 
 services:
   app: 
@@ -19,9 +19,9 @@ services:
     stdin_open: true
   db:
     image: mysql
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: example
+    env_file: .env
+    ports:
+    - "3306:3306"
     volumes:
     - db:/var/lib/mysql
 
