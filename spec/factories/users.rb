@@ -4,5 +4,10 @@ FactoryBot.define do
     email { "user1@example.com" }
     admin { true }
     password { "averysecurepassword" }
+
+    factory :secretary, class: User do
+      username { "secretary" }
+      email { "secretary@test.com" }
+    end
   end
 end
