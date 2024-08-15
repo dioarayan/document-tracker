@@ -10,11 +10,11 @@ env:
 
 jobs:
   rspec-unit-feature-tests:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     services:
       mysql:
-        image: mysql:latest
+        image: mysql
         env:
           MYSQL_ROOT_PASSWORD: example
         ports:
