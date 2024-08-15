@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "#Showing List of Users" do
+RSpec.describe "#Showing List of Users" do
   let(:user) { cache(:user1) }
 
   before do
