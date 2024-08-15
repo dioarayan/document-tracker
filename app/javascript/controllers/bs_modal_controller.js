@@ -8,24 +8,11 @@ export default class extends Controller {
   }
 
   disconnect() {
+    this.modal.dispose();
+  }
+
+  submitEnd(event) {
     this.modal.hide();
   }
-
-  submitForm(event) {
-    this.modal.hide();
-  }
-
-  hideBeforeRender(event) {
-    if (this.isOpen()) {
-      event.preventDefault();
-      this.element.addEventListener('hidden.bs.modal', event.detail.resume);
-      this.modal.hide();
-      console.log(this.modal);
-    }
-  }
-
-  // isOpen() {
-  //   return this.element.classList.contains('show');
-  // }
 }
 
