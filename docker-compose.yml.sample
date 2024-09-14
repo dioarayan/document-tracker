@@ -1,12 +1,21 @@
 version: '3.9'
 
 services:
+  db:
+    image: mysql:latest
+    env_file: .env
+    ports:
+    - "3306:3306"
+    volumes:
+    - .:/app
+    - db:/var/lib/mysql
+
   app: 
     image: daviuz/ruby:3.1.3
     user: root
     volumes:
       - .:/app
-      - gem_cache:/usr/local/bundle
+      - bundle_path:/usr/local/bundle
     working_dir: /app
     env_file: .env
     command: bundle exec rails server -b 0.0.0.0 -p 3000
@@ -14,18 +23,10 @@ services:
     depends_on:
       - db
     ports: 
-      - "3001:3000"
+      - "3000:3000"
     tty: true
     stdin_open: true
-  db:
-    image: mysql:latest
-    env_file: .env
-    ports:
-    - "3307:3306"
-    volumes:
-    - db:/var/lib/mysql
 
 volumes:
-  gem_cache:
+  bundle_path:
   db:
-    driver: local
