@@ -13,4 +13,6 @@ test:
 
 production:
   <<: *db
-  database: db/production
+  url: <%= ENV["DATABASE_PROD_URL"] %>
+  variables:
+    sql_mode: traditional
