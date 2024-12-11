@@ -42,5 +42,5 @@ RUN <<EOF
   apt update && apt install -y curl libmariadb-dev
 EOF
 
-ENTRYPOINT ["/app/docker-entrypoint.sh"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
 EXPOSE 3000
