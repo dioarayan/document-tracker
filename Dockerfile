@@ -42,7 +42,6 @@ RUN <<EOF
   apt update && apt install -y curl libmariadb-dev
 EOF
 
-COPY --from=build /app/vendor/bundle /app/vendor/bundle
 COPY --from=build /app/public/assets /app/public/assets
 COPY --from=build /usr/local /usr/local
 
